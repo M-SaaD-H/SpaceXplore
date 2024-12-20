@@ -32,10 +32,10 @@ const userSchema = new Schema(
             type: String,
             select: false
         },
-        bookings: [
+        tours: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Booking"
+                ref: "Tour"
             }
         ]
     }, { timestamps: true }

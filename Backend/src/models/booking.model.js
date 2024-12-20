@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const bookingSchema = new Schema(
+const tourSchema = new Schema(
     {
         user: {
             type: Schema.Types.ObjectId,
@@ -32,4 +32,4 @@ const bookingSchema = new Schema(
     }, { timestamps: true }
 );
 
-export const Booking = mongoose.model("Booking", bookingSchema);
+export const Tour = mongoose.model("Tour", tourSchema);

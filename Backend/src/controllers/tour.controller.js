@@ -4,7 +4,7 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
 
-const createTour = asyncHandler( async (req, res) => {
+const bookATour = asyncHandler( async (req, res) => {
     const { destination, travelDate, bookingDate, totalPrice } = req.body;
     const userID = req.user?._id;
 
@@ -49,5 +49,5 @@ const createTour = asyncHandler( async (req, res) => {
 });
 
 export {
-    createTour
+    bookATour
 }

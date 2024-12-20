@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { Tour } from "../models/tour.model.js"
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import { User } from "../models/user.model.js";
 
 const createTour = asyncHandler( async (req, res) => {
     const { destination, travelDate, bookingDate, totalPrice } = req.body;
@@ -30,6 +31,15 @@ const createTour = asyncHandler( async (req, res) => {
     if(!tour) {
         throw new ApiError(500, "Error while creating a tour");
     }
+
+    await User.findByIdAndUpdate(
+        userID,
+        {
+            $push: {
+                tours: tour
+            }
+        }
+    )
 
     return res
     .status(200)

@@ -4,6 +4,6 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.route('/create-tour').post(verifyJWT, bookATour);
+router.route('/book-tour').post(verifyJWT, bookATour);
 
 export default router;

@@ -55,7 +55,7 @@ userSchema.methods.isPasswordCorrect = async function(password, storedPassword) 
     return await bcrypt.compare(password, storedPassword); // Have to use this method beacuse we have set select:false in the password field in the model so this.password will not select the stored password of the user we have to manually send it into this function
 }
 
-userSchema.methods.generateAccessToken = async function() {
+userSchema.methods.generateAccessToken = function() {
     return jwt.sign(
         {
             _id: this._id,
@@ -69,7 +69,7 @@ userSchema.methods.generateAccessToken = async function() {
     )
 }
 
-userSchema.methods.generateRefreshToken = async function() {
+userSchema.methods.generateRefreshToken = function() {
     return jwt.sign(
         {
             _id: this._id

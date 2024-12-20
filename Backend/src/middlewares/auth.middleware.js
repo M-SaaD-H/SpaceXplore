@@ -1,9 +1,9 @@
-import { User } from "../models/user.model";
-import { ApiError } from "../utils/apiError";
-import { asyncHandler } from "../utils/asyncHandler";
-import jwt from "jsonwebtoken"
+import { User } from "../models/user.model.js";
+import { ApiError } from "../utils/apiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import jwt from "jsonwebtoken";
 
-export const verifyJWT = asyncHandler( async (req, res, next) => {
+export const verifyJWT = asyncHandler(async (req, res, next) => {
     try {
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
     
@@ -13,16 +13,16 @@ export const verifyJWT = asyncHandler( async (req, res, next) => {
     
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     
-        const user = User.findById(decodedToken._id);
-    
-        if(!user) {
+        const user = await User.findById(decodedToken._id);
+
+        if (!user) {
             throw new ApiError(401, "Invalid access token");
         }
     
         req.user = user;
-    
         next();
     } catch (error) {
-        throw new ApiError(401, error?.message || "Invalid access token");
+        console.error("Error in verifyJWT middleware:", error);
+        next(error);
     }
 });

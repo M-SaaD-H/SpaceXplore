@@ -8,16 +8,16 @@ const tourSchema = new Schema(
             required: true
         },
         destination: {
-            Type: Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Destination",
             required: true
         },
         bookingDate: {
-            Type: Date,
+            type: Date,
             default: Date.now
         },
         travelDate: {
-            Type: Date,
+            type: Date,
             required: true
         },
         status: {
@@ -26,7 +26,7 @@ const tourSchema = new Schema(
             enum: ["upcoming", "completed", "cancelled"]
         },
         totalPrice: {
-            Type: Number,
+            type: Number,
             required: true
         }
     }, { timestamps: true }

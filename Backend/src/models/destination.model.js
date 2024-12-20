@@ -3,28 +3,28 @@ import mongoose, { Schema } from "mongoose";
 const destinationSchema = new Schema(
     {
         name: {
-            Type: String,
+            type: String,
             required: true
         },
         description: {
-            Type: String,
+            type: String,
             required: true
         },
         image: {
-            Type: String,
+            type: String,
             required: true
         },
         price: {
-            Type: Number,
+            type: Number,
             required: true
         },
         availableTickets: {
-            Type: Number,
+            type: Number,
             default: 50,
             required: true
         },
         duration: {
-            Type: String,
+            type: String,
             required: true
         }
     }, { timestamps: true }

@@ -48,6 +48,45 @@ const bookATour = asyncHandler( async (req, res) => {
     )
 });
 
+const cancelTour = asyncHandler( async (req, res) => {
+    const { tourID } = req.body;
+    const userID = req.user._id;
+
+    if(!tourID || !userID) {
+        throw new ApiError(400, "tour id or user id not found");
+    }
+    
+    const tour = await Tour.findById(tourID);
+
+    if(!tour) {
+        throw new ApiError(400, "tour not found");
+    }
+
+    const user = await User.findById(userID);
+
+    if(!user) {
+        throw new ApiError(404, "Unauthorized request");
+    }
+
+    if(!user.tours.includes(tourID)) {
+        throw new ApiError(400, "You have not booked this tour");
+    }
+
+    user.tours.pull(tourID);
+    await user.save({ validateBeforeSave: false });
+
+    if(user.tours.includes(tourID)) {
+        throw new ApiError(400, "Error in cancelling the tour");
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, {}, "Tour cancelled successfully")
+    )
+})
+
 export {
-    bookATour
+    bookATour,
+    cancelTour
 }

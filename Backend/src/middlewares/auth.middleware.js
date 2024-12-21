@@ -22,7 +22,6 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        console.error("Error in verifyJWT middleware:", error);
         next(error);
     }
 });

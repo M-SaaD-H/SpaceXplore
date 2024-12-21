@@ -79,6 +79,12 @@ const cancelTour = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Error in cancelling the tour");
     }
 
+    await tour.deleteOne();
+
+    if(await Tour.findById(tourID)) {
+        throw new ApiError(500, "Error while deleting the tour");
+    }
+
     return res
     .status(200)
     .json(

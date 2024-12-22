@@ -3,17 +3,24 @@ import { Tour } from "../models/tour.model.js"
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
+import { Destination } from "../models/destination.model.js";
 
 const bookATour = asyncHandler( async (req, res) => {
-    const { destination, travelDate, bookingDate, totalPrice } = req.body;
+    const { destinationID, travelDate, totalPrice } = req.body;
     const userID = req.user?._id;
 
     if(
-        [destination, travelDate, totalPrice].some((field) => {
+        [destinationID, travelDate, totalPrice].some((field) => {
             field === ""
         })
     ) {
         throw new ApiError(400, "Tour details are not fetched correctly");
+    }
+
+    const destination = await Destination.findById(destinationID);
+
+    if(!destination) {
+        throw new ApiError(404, "Destination is not available");
     }
 
     if(!userID) {
@@ -22,8 +29,7 @@ const bookATour = asyncHandler( async (req, res) => {
 
     const tour = await Tour.create({
         user: userID,
-        destination, 
-        bookingDate: new Date(bookingDate) || Date.now(),
+        destination: destinationID,
         travelDate: new Date(travelDate),
         totalPrice
     });

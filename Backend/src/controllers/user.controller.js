@@ -203,7 +203,7 @@ const changeCurrentPassword = asyncHandler( async (req, res) => {
     )
 })
 
-const getAllTours = asyncHandler( async (req, res) => {
+const getAllUserTours = asyncHandler( async (req, res) => {
     const userID = req.user?._id;
 
     const user = await User.findById(userID);
@@ -230,5 +230,5 @@ export {
     refreshAccessToken,
     getCurrentUser,
     changeCurrentPassword,
-    getAllTours
+    getAllUserTours
 }

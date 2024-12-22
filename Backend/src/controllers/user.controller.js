@@ -203,11 +203,32 @@ const changeCurrentPassword = asyncHandler( async (req, res) => {
     )
 })
 
+const getAllTours = asyncHandler( async (req, res) => {
+    const userID = req.user?._id;
+
+    const user = await User.findById(userID);
+
+    if(!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    if(!user.tours || !user.tours.length === 0) {
+        throw new ApiError(400, "No tour found for the user");
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, user.tours, "All tours of the user fetched successfully")
+    )
+})
+
 export {
     registerUser,
     loginUser,
     logoutUser,
     refreshAccessToken,
     getCurrentUser,
-    changeCurrentPassword
+    changeCurrentPassword,
+    getAllTours
 }

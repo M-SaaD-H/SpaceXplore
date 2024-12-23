@@ -16,19 +16,11 @@ const tourSchema = new Schema(
             type: Date,
             default: Date.now
         },
-        travelDate: {
-            type: Date,
-            required: true
-        },
         status: {
             type: String,
             default: "upcoming",
             enum: ["upcoming", "completed", "cancelled"]
         },
-        totalPrice: {
-            type: Number,
-            required: true
-        }
     }, { timestamps: true }
 );
 

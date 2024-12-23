@@ -7,15 +7,11 @@ import { Destination } from "../models/destination.model.js";
 
 
 const bookATour = asyncHandler( async (req, res) => {
-    const { destinationID, travelDate, totalPrice } = req.body;
+    const { destinationID } = req.body;
     const userID = req.user?._id;
 
-    if(
-        [destinationID, travelDate, totalPrice].some((field) => {
-            field === ""
-        })
-    ) {
-        throw new ApiError(400, "Tour details are not fetched correctly");
+    if(!destinationID) {
+        throw new ApiError(400, "Destination id not fetched correctly");
     }
 
     const destination = await Destination.findById(destinationID);
@@ -30,9 +26,7 @@ const bookATour = asyncHandler( async (req, res) => {
 
     const tour = await Tour.create({
         user: userID,
-        destination: destinationID,
-        travelDate: new Date(travelDate),
-        totalPrice
+        destination: destinationID
     });
 
     if(!tour) {

@@ -39,10 +39,31 @@ const getDestinationById = asyncHandler( async (req, res) => {
     .json(
         new ApiResponse(200, destination, "Destination fetched successfully")
     )
+});
+
+const getAllDestinationReviews = asyncHandler( async (req, res) => {
+    const { destinationID } = req.params;
+
+    const destination = await Destination.findById(destinationID);
+
+    if(!destination) {
+        throw new ApiError(404, "Destination not found");
+    }
+
+    if(!destination.reviews || destination.reviews.length === 0) {
+        throw new ApiError(400, "No reviews for the destination");
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, destination.reviews, "Reviews for the destination fetched successfully")
+    )
 })
 
 
 export {
     getAllAvailableDestinations,
-    getDestinationById
+    getDestinationById,
+    getAllDestinationReviews
 }

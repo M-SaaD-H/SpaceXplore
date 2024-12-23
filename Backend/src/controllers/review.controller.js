@@ -51,6 +51,10 @@ const addReview = asyncHandler( async (req, res) => {
 
     await destination.save({ validateBeforeSave: false });
 
+    if(!destination.reviews.includes(review._id)) {
+        throw new ApiError(500, "Error while pushing created review in the destination's reviews");
+    }
+
     return res
     .status(200)
     .json(

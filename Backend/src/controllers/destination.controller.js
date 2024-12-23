@@ -28,7 +28,7 @@ const getAllAvailableDestinations = asyncHandler( async (req, res) => {
 const getDestinationById = asyncHandler( async (req, res) => {
     const { destinationID } = req.params;
     
-    const destination = await Destination.findById(destinationID);
+    const destination = await Destination.findById(destinationID).populate("reviews");
 
     if(!destination) {
         throw new ApiError(404, "Destination not found");
@@ -44,7 +44,7 @@ const getDestinationById = asyncHandler( async (req, res) => {
 const getAllDestinationReviews = asyncHandler( async (req, res) => {
     const { destinationID } = req.params;
 
-    const destination = await Destination.findById(destinationID);
+    const destination = await Destination.findById(destinationID).populate("reviews");
 
     if(!destination) {
         throw new ApiError(404, "Destination not found");
@@ -59,7 +59,7 @@ const getAllDestinationReviews = asyncHandler( async (req, res) => {
     .json(
         new ApiResponse(200, destination.reviews, "Reviews for the destination fetched successfully")
     )
-})
+});
 
 
 export {

@@ -30,7 +30,13 @@ const destinationSchema = new Schema(
         duration: {
             type: Number, // This duration will be in days
             required: true
-        }
+        },
+        reviews: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Review"
+            }
+        ]
     }
 );
 

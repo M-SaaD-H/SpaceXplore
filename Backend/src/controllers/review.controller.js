@@ -47,7 +47,7 @@ const addReview = asyncHandler( async (req, res) => {
         throw new ApiError(500, "Error while creating the review");
     }
 
-    destination.reviews.push(review);
+    destination.reviews.push(review._id);
 
     await destination.save({ validateBeforeSave: false });
 

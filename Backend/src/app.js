@@ -23,8 +23,10 @@ app.use(cookieParser());
 
 import userRouter from "./routes/user.routes.js";
 import tourRouter from "./routes/tour.routes.js";
+import destinationRouter from "./routes/destination.routes.js"
 
 app.use('/api/users', userRouter);
 app.use('/api/tours', tourRouter);
+app.use('/api/destinations', destinationRouter);
 
 export { app }

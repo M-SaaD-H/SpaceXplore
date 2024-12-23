@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { bookATour, cancelTour, getAllAvailableDestinations } from "../controllers/tour.controller.js";
+import { bookATour, cancelTour } from "../controllers/tour.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router();

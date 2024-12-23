@@ -206,7 +206,13 @@ const changeCurrentPassword = asyncHandler( async (req, res) => {
 const getAllUserTours = asyncHandler( async (req, res) => {
     const userID = req.user?._id;
 
-    const user = await User.findById(userID);
+    const user = await User.findById(userID).populate("tours");
+
+    const userTours = user.tours;
+
+    for(let i=0; i<userTours.length; i++) {
+        await userTours[i].populate("destination");
+    }
 
     if(!user) {
         throw new ApiError(404, "User not found");
@@ -219,7 +225,7 @@ const getAllUserTours = asyncHandler( async (req, res) => {
     return res
     .status(200)
     .json(
-        new ApiResponse(200, user.tours, "All tours of the user fetched successfully")
+        new ApiResponse(200, userTours, "All tours of the user fetched successfully")
     )
 })
 

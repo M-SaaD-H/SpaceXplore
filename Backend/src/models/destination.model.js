@@ -18,7 +18,7 @@ const destinationSchema = new Schema(
             type: Number,
             required: true
         },
-        travelDates: {
+        travelDate: {
             type: Date,
             required: true
         },

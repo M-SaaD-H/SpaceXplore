@@ -20,6 +20,14 @@ const bookATour = asyncHandler( async (req, res) => {
         throw new ApiError(404, "Destination is not available");
     }
 
+    if(destination.availableTickets <= 0) {
+        throw new ApiError(401, "No available tickets for this destination");
+    }
+
+    destination.availableTickets--;
+
+    await destination.save({ validateBeforeSave: true });
+
     if(!userID) {
         throw new ApiError(401, "Unauthorized request");
     }
@@ -79,6 +87,18 @@ const cancelTour = asyncHandler( async (req, res) => {
     if(user.tours.includes(tourID)) {
         throw new ApiError(400, "Error in cancelling the tour");
     }
+
+    await Destination.findByIdAndUpdate(
+        tour.destination,
+        {
+            $inc: {
+                availableTickets: 1
+            }
+        },
+        {
+            new: true
+        }
+    )
 
     await tour.deleteOne();
 

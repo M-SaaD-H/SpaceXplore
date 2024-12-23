@@ -18,16 +18,20 @@ const destinationSchema = new Schema(
             type: Number,
             required: true
         },
+        travelDates: {
+            type: Date,
+            required: true
+        },
         availableTickets: {
             type: Number,
             default: 50,
             required: true
         },
         duration: {
-            type: String,
+            type: Number, // This duration will be in days
             required: true
         }
-    }, { timestamps: true }
+    }
 );
 
 export const Destination = mongoose.model("Destination", destinationSchema);

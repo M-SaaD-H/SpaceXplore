@@ -2,7 +2,6 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { Destination } from "../models/destination.model.js";
-import { query } from "express";
 
 const getAllAvailableDestinations = asyncHandler( async (req, res) => {
     const { minPrice, maxPrice, maxDuration } = req.query;
@@ -26,7 +25,24 @@ const getAllAvailableDestinations = asyncHandler( async (req, res) => {
     )
 });
 
+const getDestinationById = asyncHandler( async (req, res) => {
+    const { destinationID } = req.params;
+    
+    const destination = await Destination.findById(destinationID);
+
+    if(!destination) {
+        throw new ApiError(404, "Destination not found");
+    }
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, destination, "Destination fetched successfully")
+    )
+})
+
 
 export {
-    getAllAvailableDestinations
+    getAllAvailableDestinations,
+    getDestinationById
 }

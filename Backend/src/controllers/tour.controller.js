@@ -4,6 +4,7 @@ import { ApiError } from "../utils/apiError.js";
 import { ApiResponse } from "../utils/apiResponse.js";
 import { User } from "../models/user.model.js";
 import { Destination } from "../models/destination.model.js";
+import { sendBookingCancellationEmail, sendBookingComfirmationEmail } from "../utils/nodemailer.js";
 
 
 const bookATour = asyncHandler( async (req, res) => {
@@ -41,7 +42,7 @@ const bookATour = asyncHandler( async (req, res) => {
         throw new ApiError(500, "Error while creating a tour");
     }
 
-    await User.findByIdAndUpdate(
+    const user = await User.findByIdAndUpdate(
         userID,
         {
             $push: {
@@ -49,6 +50,8 @@ const bookATour = asyncHandler( async (req, res) => {
             }
         }
     )
+
+    sendBookingComfirmationEmail(user.fullName.firstName, await tour.populate("destination"), user.email);
 
     return res
     .status(200)
@@ -105,6 +108,8 @@ const cancelTour = asyncHandler( async (req, res) => {
     if(await Tour.findById(tourID)) {
         throw new ApiError(500, "Error while deleting the tour");
     }
+
+    sendBookingCancellationEmail(user.fullName.firstName, await tour.populate("destination"), user.email);
 
     return res
     .status(200)

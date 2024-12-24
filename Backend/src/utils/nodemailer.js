@@ -67,7 +67,80 @@ function sendWelcomeEmail(usersname, userEmail) {
     sendEmail(subject, emailContent, userEmail);
 }
 
+function sendBookingComfirmationEmail(usersname, tour, userEmail) {
+    const subject = "Your Space Tourism Booking Confirmation";
+
+    const emailContent = `
+    <html>
+        <body>
+            <div>
+                <p>Dear ${usersname},</p>
+                <br>
+                <p>Thank you for choosing SpaceXplore! We're thrilled to confirm your booking for an unforgettable journey among the stars. Below are the details of your booking:</p>
+                <p>Booking Details:</p>
+                <ul>
+                    <li>Booking ID: ${tour._id}</li>
+                    <li>Destination: ${tour.destination.name}</li>
+                    <li>Departure Date: ${tour.destination.travelDate}</li>
+                    <li>Total Amount: ${tour.destination.price}</li>
+                </ul>
+                <br>
+                <p>Important Information:</p>
+                <ul>
+                    <li>Please ensure you arrive at the launch site at least 2 hours before the scheduled departure.</li>
+                    <li>You can manage or cancel your booking through your account dashboard on our website.</li>
+                    <li>For any assistance, feel free to contact our support team at support@spacexplore.com</li>
+                </ul>
+                <br>
+                <p>We're Excited to Have You Aboard!</p>
+                <p>Prepare for a journey beyond your imagination. Our team is committed to making your experience truly stellar.</p>
+                <p>If you have any special requirements or questions, don’t hesitate to reach out.</p>
+                <br>
+                <br>
+                <p>Safe travels,</p>
+                <p>The SpaceXplore Team</p>
+            </div>
+        </body>
+    </html>
+    `
+
+    sendEmail(subject, emailContent, userEmail);
+}
+
+function sendBookingCancellationEmail(usersname, tour, userEmail) {
+    const subject = "Your Space Tourism Booking Has Been Cancelled";
+
+    const emailContent = `
+    <html>
+    <body>
+        <p>Dear ${usersname},</p>
+        <p>We regret to inform you that your booking for the space tour has been cancelled. Below are the details of the cancelled booking:</p>
+        <ul>
+            <li>Booking ID: ${tour._id}</li>
+            <li>Destination: ${tour.destination.name}</li>
+            <li>Departure Date: ${tour.destination.travelDate}</li>
+            <li>Amount Refund: ${tour.destination.price}</li>
+        </ul>
+        <br>
+        <p>Refund Information</p>
+        <p>If applicable, the refund of ${tour.destination.price} has been initiated to your original payment method. Refunds typically take 5-7 business days to process.</p>
+        <p>If you believe this cancellation was made in error or wish to rebook your tour, please contact us at support@spacexplore.com</p>
+        <br>
+        <p>We sincerely apologize for any inconvenience this may have caused. We hope to assist you with your space exploration journey in the future.</p>
+        <br>
+        <br>
+        <p>Best regards,</p>
+        <p>The SpaceXplore Team</p>
+    </body>
+    </html>
+    `
+
+    sendEmail(subject, emailContent, userEmail);
+}
+
 
 export {
-    sendWelcomeEmail
+    sendWelcomeEmail,
+    sendBookingComfirmationEmail,
+    sendBookingCancellationEmail
 }

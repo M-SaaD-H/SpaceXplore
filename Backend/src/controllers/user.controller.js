@@ -3,6 +3,7 @@ import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { User } from "../models/user.model.js"
 import jwt from "jsonwebtoken"
+import { sendWelcomeEmail } from "../utils/nodemailer.js"
 
 // options for cookies
 const options = {
@@ -62,6 +63,8 @@ const registerUser = asyncHandler( async (req, res) => {
     if(!user) {
         throw new ApiError(500, "Error occured while registering the user");
     }
+    
+    sendWelcomeEmail(fullName.firstName + " " + fullName.lastName, user.email);
 
     return res
     .status(200)

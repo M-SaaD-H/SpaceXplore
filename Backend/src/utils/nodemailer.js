@@ -13,7 +13,7 @@ const oauth2Client = new google.auth.OAuth2(clientID, clientSecret, redirectURI)
 oauth2Client.setCredentials({ refresh_token: refreshToken });
 
 
-async function sendWelcomeEmail(usersname, userEmail) {
+async function sendEmail(subject, emailContent, userEmail) {
     try {
         const accessToken = await oauth2Client.getAccessToken();
     
@@ -28,38 +28,43 @@ async function sendWelcomeEmail(usersname, userEmail) {
                 accessToken: accessToken.token
             }
         });
-
-        const htmlContent = `
-        <html>
-            <body>
-                <div>
-                    <p>Dear ${usersname},</p=>
-                    <p>We are pleased to welcome you to SpaceXplore. Your registration has been successfully completed, and you are now part of our exclusive community of space enthusiasts.</p>
-                    <p>At SpaceXplore, we offer an unparalleled opportunity to explore the wonders of space through carefully curated travel destinations. From the Moon to distant stars, your journey to the cosmos begins here.</p=>
-
-                    <p>Next Steps:</p>
-                    <ol>
-                        <li>Discover Our Destinations: Explore a variety of destinations available for space tourism.</li>
-                        <li>Book Your Experience: Choose your preferred destination and complete your booking seamlessly via your account.</li>
-                        <li>Stay Updated: We will keep you informed with important updates, booking confirmations, and special offers via email.</li>
-                    </ol>
-                </div>
-            </body>
-        </html>`;
     
         const mailOptions = {
             from: `"SpaceXplore" <${sendersAddress}>`,
             to: userEmail,
-            subject: "Welcome to SpaceXplore - Your Space Journey Awaits",
-            html: htmlContent
+            subject: subject,
+            html: emailContent
         }
     
         const result = await transporter.sendMail(mailOptions);
         
-        console.log("Welcome email sent successfully!! Message ID:", result.messageId);
+        console.log("Email sent successfully!! Message ID:", result.messageId);
     } catch (error) {
         console.log("Error in sending mail", error);
     }
+}
+
+function sendWelcomeEmail(usersname, userEmail) {
+    const subject = "Welcome to SpaceXplore - Your Space Journey Awaits"
+
+    const emailContent = `
+    <html>
+        <body>
+            <div>
+                <p>Dear ${usersname},</p=>
+                <p>We are pleased to welcome you to SpaceXplore. Your registration has been successfully completed, and you are now part of our exclusive community of space enthusiasts.</p>
+                <p>At SpaceXplore, we offer an unparalleled opportunity to explore the wonders of space through carefully curated travel destinations. From the Moon to distant stars, your journey to the cosmos begins here.</p=>
+
+                <p>Next Steps:</p>
+                <ol>
+                    <li>Discover Our Destinations: Explore a variety of destinations available for space tourism.</li>
+                    <li>Book Your Experience: Choose your preferred destination and complete your booking seamlessly via your account.</li>
+                    <li>Stay Updated: We will keep you informed with important updates, booking confirmations, and special offers via email.</li>                    </ol>
+            </div>
+        </body>
+    </html>`;
+
+    sendEmail(subject, emailContent, userEmail);
 }
 
 

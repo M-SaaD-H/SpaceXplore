@@ -29,13 +29,13 @@ const generateAccessAndRefreshToken = async (userID) => {
 }
 
 const registerUser = asyncHandler( async (req, res) => {
-    const { fullName, email, password } = req.body;
+    const { fullName, email, password, isAdmin } = req.body;
     const { firstName, lastName } = fullName;
 
     // Checks
 
     if(
-        [firstName, lastName, email, password].some((field) => {
+        [firstName, lastName, email, password, isAdmin].some((field) => {
             field.trim() === "";
         })
     ) {
@@ -57,7 +57,8 @@ const registerUser = asyncHandler( async (req, res) => {
     const user = await User.create({
         fullName,
         email,
-        password
+        password,
+        isAdmin
     });
 
     if(!user) {

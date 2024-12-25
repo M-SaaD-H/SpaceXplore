@@ -37,7 +37,12 @@ const userSchema = new Schema(
                 type: Schema.Types.ObjectId,
                 ref: "Tour"
             }
-        ]
+        ],
+        isAdmin: {
+            type: Boolean,
+            default: false,
+            required: true
+        }
     }, { timestamps: true }
 );
 

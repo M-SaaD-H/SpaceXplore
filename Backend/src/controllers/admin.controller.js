@@ -87,7 +87,47 @@ const deleteDestination = asyncHandler( async (req, res) => {
     )
 });
 
+const updateDestinationDetails = asyncHandler( async (req, res) => {
+    const { destinationID } = req.params;
+    const { name, description, image, price, travelDate, availableTickets, duration } = req.body;
+    const userID = req.user?._id;
+
+    const user = await User.findById(userID);
+
+    if(!user) {
+        throw new ApiError(400, "User not found");
+    }
+
+    if(!user.isAdmin) {
+        throw new ApiError(401, "Unauthorized request, only admins can update destination details");
+    }
+
+    const destination = await Destination.findById(destinationID);
+
+    if(!destination) {
+        throw new ApiError(404, "Destination not found");
+    }
+
+    // Updates
+    if(name) destination.name = name;
+    if(description) destination.description = description;
+    if(image) destination.image = image;
+    if(price) destination.price = price;
+    if(travelDate) destination.travelDate = travelDate;
+    if(availableTickets) destination.availableTickets = availableTickets;
+    if(duration) destination.duration = duration;
+
+    await destination.save({ validateBeforeSave: false });
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, destination, "Destination details updated successfully")
+    )
+});
+
 export {
     addDestination,
-    deleteDestination
+    deleteDestination,
+    updateDestinationDetails
 }

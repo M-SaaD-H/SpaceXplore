@@ -15,7 +15,7 @@ const addDestination = asyncHandler( async (req, res) => {
     }
 
     if(!user.isAdmin) {
-        throw new ApiError(401, "Access denied, only admins can add destinations");
+        throw new ApiError(401, "Unauthorized request, only admins can add destinations");
     }
 
     if(
@@ -56,6 +56,17 @@ const addDestination = asyncHandler( async (req, res) => {
 
 const deleteDestination = asyncHandler( async (req, res) => {
     const { destinationID } = req.body;
+    const userID = req.user?._id;
+
+    const user = await User.findById(userID);
+    
+    if(!user) {
+        throw new ApiError(404, "User not found");
+    }
+
+    if(!user.isAdmin) {
+        throw new ApiError(401, "Unauthorized request, only admins can delete destinations");
+    }
 
     if(!destinationID) {
         throw new ApiError(401, "Destintaion ID not found");

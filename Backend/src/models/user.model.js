@@ -25,8 +25,7 @@ const userSchema = new Schema(
         password: {  // Needs to be encrypted
             type: String,
             required: true,
-            trim: true,
-            select: false
+            trim: true
         },
         refreshToken: {
             type: String,
@@ -56,8 +55,8 @@ userSchema.pre("save", async function(next) {
 });
 
 // to compare the encrypted pass
-userSchema.methods.isPasswordCorrect = async function(password, storedPassword) {
-    return await bcrypt.compare(password, storedPassword); // Have to use this method beacuse we have set select:false in the password field in the model so this.password will not select the stored password of the user we have to manually send it into this function
+userSchema.methods.isPasswordCorrect = async function(password) {
+    return await bcrypt.compare(password, this.password);
 }
 
 userSchema.methods.generateAccessToken = function() {

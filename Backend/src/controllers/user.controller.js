@@ -162,19 +162,19 @@ const loginUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "All fields are required");
     }
 
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ email })
 
     if(!user) {
         throw new ApiError(404, "User does not exits");
     }
 
-    if(!await user.isPasswordCorrect(password, user.password)) {
+    if(!await user.isPasswordCorrect(password)) {
         throw new ApiError(401, "Password is invalid");
     }
 
     const { accessToken, refreshToken } =  await generateAccessAndRefreshToken(user._id);
 
-    const loggedInUser = await User.findById(user._id);
+    const loggedInUser = await User.findById(user._id).select("-password");
 
     return res
     .status(200)

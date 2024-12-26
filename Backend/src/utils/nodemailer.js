@@ -138,9 +138,31 @@ function sendBookingCancellationEmail(usersname, tour, userEmail) {
     sendEmail(subject, emailContent, userEmail);
 }
 
+function sendOTPEmail(usersname, OTP, userEmail) {
+    const subject = "Your OTP for Login";
+
+    const emailContent = `
+    <html>
+    <body>
+        <p>Dear ${usersname},</p>
+        <p>Your OTP for login is <strong>${OTP}</strong></p>
+        <p>It is valid for 5 minutes</p>
+        <p>If you didn't request this, please ignore this email.</p>
+        <br>
+        <br>
+        <p>Best Regards,</p>
+        <p>SpaceXplore</p>
+    </body>
+    </html>
+    `
+
+    sendEmail(subject, emailContent, userEmail);
+}
+
 
 export {
     sendWelcomeEmail,
     sendBookingComfirmationEmail,
-    sendBookingCancellationEmail
+    sendBookingCancellationEmail,
+    sendOTPEmail
 }

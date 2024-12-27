@@ -1,22 +1,33 @@
 import mongoose, { Schema } from "mongoose";
+import bcrypt from "bcrypt";
 
-const otpVerification = new Schema(
+const otpVerificationSchema = new Schema(
     {
         usersEmail: {
             type: String,
             required: true
         },
         OTP: {
-            type: Number,
+            type: String, // have to use string instead of number because bcrypt only hashes strings and return hashed output as string
             required: true
         },
         expiresAt: {
             type: Date,
             required: true,
-            index: { expireAfterSeconds: 5 * 60 }
+            index: { expireAfterSeconds: 1 }
         }
     }, { timestamps: true }
 );
 
+otpVerificationSchema.pre("save", async function(next) {
+    this.OTP = await bcrypt.hash(this.OTP, 10);
 
-export const OTPVerification = mongoose.model("OTPVerification", otpVerification);
+    next();
+});
+
+otpVerificationSchema.methods.isOTPValid = async function(OTP) {
+    return await bcrypt.compare(OTP, this.OTP);
+}
+
+
+export const OTPVerification = mongoose.model("OTPVerification", otpVerificationSchema);

@@ -29,7 +29,7 @@ const generateAccessAndRefreshToken = async (userID) => {
     }
 }
 
-const generateAndSendOTP = asyncHandler( async (fullName, email) => {
+const generateAndSendOTP = async (fullName, email) => {
     const OTP = Math.floor(100000 + Math.random() * 900000);
 
     await OTPVerification.create({
@@ -39,7 +39,7 @@ const generateAndSendOTP = asyncHandler( async (fullName, email) => {
     });
 
     sendOTPEmail(fullName.firstName + " " + fullName.lastName, OTP, email);
-})
+}
 
 const registerUser = asyncHandler( async (req, res) => {
     const { fullName, email, password, isAdmin } = req.body;
@@ -99,7 +99,7 @@ const verifyOtpAndLoginUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "OTP is expired");
     }
 
-    if(OTP !== storedOtpVerificationInstance.OTP) {
+    if(!await storedOtpVerificationInstance.isOTPValid(OTP)) {
         throw new ApiError(400, "Invalid OTP");
     }
 
@@ -145,6 +145,10 @@ const resendOTP = asyncHandler( async (req, res) => {
     if(!fullName || !email) {
         throw new ApiError(400, "All fields are required");
     }
+
+    const existingRequest = await OTPVerification.findOne({ usersEmail: email });
+
+    if(existingRequest) existingRequest.deleteOne();
 
     generateAndSendOTP(fullName, email);
 

@@ -3,7 +3,7 @@ import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { User } from "../models/user.model.js"
 import jwt from "jsonwebtoken"
-import { sendOTPEmail, sendResetPassOTPEmail, sendWelcomeEmail } from "../utils/nodemailer.js"
+import { sendOTPEmail, sendResetPassConfirmationEmail, sendResetPassOTPEmail, sendWelcomeEmail } from "../utils/nodemailer.js"
 import { OTPVerification } from "../models/otpVerification.model.js"
 
 // options for cookies
@@ -350,6 +350,8 @@ const verifyOTPAndResetPassword = asyncHandler( async(req, res) => {
 
     user.password = newPassword;
     await user.save({ validateBeforeSave: false });
+
+    sendResetPassConfirmationEmail(user.fullName.firstName + " " + user.fullName.lastName, user.email);
 
     return res
     .status(200)

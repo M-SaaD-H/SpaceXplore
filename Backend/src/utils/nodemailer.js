@@ -186,11 +186,31 @@ function sendResetPassOTPEmail(usersname, OTP, userEmail) {
     sendEmail(subject, emailContent, userEmail);
 }
 
+function sendResetPassConfirmationEmail(usersname, userEmail) {
+    const subject = "Your Password Has Been Successfully Changed";
+
+    const emailContent = `
+    <html>
+    <body>
+        <p>Dear ${usersname},</p>
+        <p>We wanted to let you know that your password has been successfully changed. If you made this change, no further action is required.</p>
+        <p>If you did not make this change, please contact us immediately at support@spacexplore.com to secure your account. For your safety, we recommend that you change your password again and review your account activity.</p>
+        <p>If you need any assistance, don't hesitate to reach out to our support team.</p>
+        <br>
+        <br>
+        <p>Best Regards</p>
+        <p>The SpaceXplore Team</p>
+    </body>
+    </html>
+    `
+}
+
 
 export {
     sendWelcomeEmail,
     sendBookingComfirmationEmail,
     sendBookingCancellationEmail,
     sendOTPEmail,
-    sendResetPassOTPEmail
+    sendResetPassOTPEmail,
+    sendResetPassConfirmationEmail
 }

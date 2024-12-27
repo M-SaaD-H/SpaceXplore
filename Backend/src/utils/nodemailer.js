@@ -159,10 +159,38 @@ function sendOTPEmail(usersname, OTP, userEmail) {
     sendEmail(subject, emailContent, userEmail);
 }
 
+function sendResetPassOTPEmail(usersname, OTP, userEmail) {
+    const subject = "Your One-Time Password (OTP) for Password Reset";
+
+    const emailContent =`
+    <html>
+    <body>
+        <p>Dear ${usersname},</p>
+        <p>We've received a request to reset the password for your account. To proceed with the reset, please use the following One-Time Password (OTP):</p>
+        <strong>${OTP}</strong>
+        <p>Please enter this OTP on the password reset page to complete the process.</p>
+        <strong>Important:</strong>
+        <ul>
+            <li>The OTP is valid for 5 minutes.</li>
+            <li>If you did not request a password reset, please ignore this email. Your account will remain secure.</li>
+        </ul>
+        <p>If you need further assistance, feel free to contact our support team at support@spacexplore.com</p>
+        <br>
+        <br>
+        <p>Best Regards</p>
+        <p>The SpaceXplore Team</p>
+    </body>
+    </html>
+    `
+
+    sendEmail(subject, emailContent, userEmail);
+}
+
 
 export {
     sendWelcomeEmail,
     sendBookingComfirmationEmail,
     sendBookingCancellationEmail,
-    sendOTPEmail
+    sendOTPEmail,
+    sendResetPassOTPEmail
 }

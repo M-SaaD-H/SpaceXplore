@@ -3,7 +3,7 @@ import { ApiError } from "../utils/apiError.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 import { User } from "../models/user.model.js"
 import jwt from "jsonwebtoken"
-import { sendOTPEmail, sendWelcomeEmail } from "../utils/nodemailer.js"
+import { sendOTPEmail, sendResetPassOTPEmail, sendWelcomeEmail } from "../utils/nodemailer.js"
 import { OTPVerification } from "../models/otpVerification.model.js"
 
 // options for cookies
@@ -29,7 +29,7 @@ const generateAccessAndRefreshToken = async (userID) => {
     }
 }
 
-const generateAndSendOTP = async (fullName, email) => {
+const generateOTP = async (email) => {
     const OTP = Math.floor(100000 + Math.random() * 900000);
 
     await OTPVerification.create({
@@ -38,7 +38,7 @@ const generateAndSendOTP = async (fullName, email) => {
         expiresAt: Date.now() + 5 * 60 * 1000 // OTP expires in 5 minutes
     });
 
-    sendOTPEmail(fullName.firstName + " " + fullName.lastName, OTP, email);
+    return OTP;
 }
 
 const registerUser = asyncHandler( async (req, res) => {
@@ -65,7 +65,9 @@ const registerUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Email address already registered");
     }
 
-    generateAndSendOTP(fullName, email)
+    const OTP = await generateOTP(email);
+
+    sendOTPEmail(firstName + " " + lastName, OTP, email);
 
     return res
     .status(200)
@@ -103,7 +105,7 @@ const verifyOtpAndLoginUser = asyncHandler( async (req, res) => {
         throw new ApiError(400, "Invalid OTP");
     }
 
-    await storedOtpVerificationInstance.deleteOne();
+    storedOtpVerificationInstance.deleteOne();
 
     // Now create the user
 
@@ -292,6 +294,70 @@ const changeCurrentPassword = asyncHandler( async (req, res) => {
     )
 })
 
+const sendOTPToResetPassword = asyncHandler( async (req, res) => {
+    const { email } = req.body;
+
+    if(!email) {
+        throw new ApiError(404, "Email Address is required");
+    }
+
+    if(!email.includes('@')) {
+        throw new ApiError(400, "Email Address is Invalid");
+    }
+
+    const user = await User.findOne({ email });
+
+    if(!user) {
+        throw new ApiError(404, "User does not exists");
+    }
+
+    // Delete any existing request
+    const existingRequest = await OTPVerification.findOne({ usersEmail: email });
+
+    if(existingRequest) existingRequest.deleteOne();
+
+    const OTP = await generateOTP(email);
+
+    sendResetPassOTPEmail(user.fullName.firstName + " " + user.fullName.lastName, OTP, email);
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, {}, "OTP sent to reset password")
+    )
+})
+
+const verifyOTPAndResetPassword = asyncHandler( async(req, res) => {
+    const { email, newPassword, OTP } = req.body;
+    
+    const storedOtpVerificationInstance = await OTPVerification.findOne({ usersEmail: email });
+
+    if(!storedOtpVerificationInstance) {
+        throw new ApiError(404, "OTP has not been requested or already verified");
+    }
+
+    if(storedOtpVerificationInstance.expiresAt < Date.now()) {
+        throw new ApiError(400, "OTP is expired");
+    }
+
+    if(!await storedOtpVerificationInstance.isOTPValid(OTP)) {
+        throw new ApiError(400, "Invalid OTP");
+    }
+
+    storedOtpVerificationInstance.deleteOne();
+
+    const user = await User.findOne({ email });
+
+    user.password = newPassword;
+    await user.save({ validateBeforeSave: false });
+
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(200, {}, "Password reset successfully")
+    )
+})
+
 const getAllUserTours = asyncHandler( async (req, res) => {
     const userID = req.user?._id;
 
@@ -326,6 +392,8 @@ export {
     logoutUser,
     refreshAccessToken,
     getCurrentUser,
+    sendOTPToResetPassword,
+    verifyOTPAndResetPassword,
     changeCurrentPassword,
     getAllUserTours
 }

@@ -7,6 +7,13 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: #f7f7f7;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #161719;
 }
 
 .heading {

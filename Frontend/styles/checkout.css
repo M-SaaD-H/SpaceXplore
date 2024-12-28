@@ -2,4 +2,108 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #f7f7f7;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #1B1B1B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vw;
+    gap: 2vw;
+}
+
+.payment-dets {
+    width: 60vw;
+    height: 100%;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Suggestions for below Part? */
+    background: rgba(129, 209, 181, 0.15);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.1 );
+}
+
+.payment-dets form {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form .input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    font-size: 1.3vw;
+}
+
+form .input-field input {
+    font-size: 1.3vw;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 0.3vw 0.7vw;
+    border-radius: 5px;
+}
+
+.amount-dets {
+    margin-top: 5vw;
+}
+
+.amount-dets > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2vw;
+    margin: 0.5vw 0;
+}
+
+.destination-dets * {
+    color: black;
+}
+
+.destination-dets {
+    background-color: #81D1B5;
+    width: 40vw;
+    height: 100%;
+    padding: 2vw;
+    border-radius: 5px;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+.destination-dets .image {
+    background-color: red;
+    height: 20vw;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.destination-dets h1 {
+    text-align: center;
+    font-size: 4vw;
+}
+
+.destination-dets .dets {
+    margin-top: 4vw;
+}
+
+.destination-dets .dets > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3vw;
+    margin: 0.3vw;
+    font-weight: 450;
 }

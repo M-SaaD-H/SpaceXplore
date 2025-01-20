@@ -12,8 +12,9 @@
 
 body {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #161719;
+    position: relative;
 }
 
 .heading {
@@ -22,6 +23,11 @@ body {
     letter-spacing: 0.2vw;
 }
 
+.box {
+    background-color: #25282E;
+    border-radius: 7px;
+    padding: 1.7vw;
+}
 
 .btn {
     color: black;

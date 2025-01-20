@@ -1,0 +1,179 @@
+.cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vw;
+    width: 100vw;
+    height: 100vh;
+    gap: 1vw;
+}
+
+.image {
+    width: 45%;
+    height: 97%;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+}
+
+.forms-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10vw;
+    align-content: center;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vw;
+    width: 50%;
+    position: relative;
+}
+
+.form form {
+    height: max-content;
+    width: 70%;
+    position: absolute;
+}
+
+#login-form {
+    margin-top: 5vw;
+}
+
+#login-form form {
+    right: 100%;
+}
+
+#signup-form form {
+    width: 80%;
+}
+
+#login-form p {
+    margin-bottom: 4vw;
+}
+
+#login-form a {
+    transition: all 0.1s ease-in-out;
+}
+
+#login-form a:hover {
+    color: #919191;
+}
+
+.name {
+    display: flex;
+    gap: 1vw;
+}
+
+.forms-cont .form form h3 {
+    font-size: 3vw;
+    font-weight: 500;
+    margin-bottom: 0.5vw;
+}
+
+.forms-cont .form form p {
+    margin-bottom: 3vw;
+    color: #9d9d9e;
+}
+
+span {
+    color: #81D1B5;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.08s ease-in-out;
+}
+
+span:hover {
+    color: #57a388;
+}
+
+.input-field {
+    position: relative;
+    width: 100%;
+    margin: 1.5vw 0;
+    border-radius: 5px;
+    background-color: #25282E;
+}
+
+.name {
+    margin: 1vw 0;
+}
+
+.name .input-field {
+    margin: 0;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 1vw;
+    padding: 0 5px;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    transition: 0.4s;
+}
+
+.input-field label::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 1vw;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.input-field input:focus + label,
+.input-field input:valid + label {
+    top: 0;
+    padding: 0.5vw;
+    font-size: 1vw;
+}
+
+.form form input[type="checkbox"] {
+    transform: scale(1.6);
+    margin: 0 1vw;
+}
+
+.form form input[type="submit"] {
+    background-color: #81D1B5;
+    width: 100%;
+    border: none;
+    color: black;
+    cursor: pointer;
+    margin: 3vw 0;
+    padding: 1vw;
+    font-size: 1.2vw;  
+    font-weight: 600;  
+    border-radius: 10px;
+}

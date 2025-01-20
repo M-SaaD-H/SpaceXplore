@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./styles/global.css">
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+<body>
+    <div class="cont">
+        <div class="image box"></div>
+        <div class="forms-cont box">
+            <div class="form" id="login-form">
+                <form action="http://localhost:4000/api/users/login">
+                    <h3>Log In</h3>
+                    <p>Don't have an account? <span>Create One</span></p>
+                    <div class="input-field">
+                        <input type="text" spellcheck="false" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" spellcheck="false" required>
+                        <label for="">Password</label>
+                    </div>
+                    <a href="">Forgot Password</a>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+            <div class="form" id="signup-form">
+                <form action="">
+                    <h3>Create an Account</h3>
+                    <p>Already have an account? <span>Log in</span></p>
+                    <div class="name">
+                        <div class="input-field">
+                            <input type="text" required>
+                            <label for="">First Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" required>
+                            <label for="">Last Name</label>
+                        </div>
+                   </div>
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label for="">Email Address</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label for="">Password</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label for="">Confirm Password</label>
+                    </div>
+                    <input type="checkbox" name="checkbox" value="I agree to the Terms & Conditions" class="checkbox" required/>I agree to the <span>Terms & Conditions</span>
+                    <input type="submit" value="Create account">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./scripts/login.js"></script>
+</body>
+</html>

@@ -10,6 +10,34 @@
     color: #f7f7f7;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 0 40px black;
+}
+  
+.links a::after {
+    text-decoration: none;
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.links a:hover::after {
+    text-decoration: none;
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
 body {
     width: 100vw;
     min-height: 100vh;
@@ -38,5 +66,100 @@ body {
     font-size: 1.3vw;
     font-weight: 600;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Navbar */
+
+.nav {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 12px 12px 40px;
+    border-radius: 50px;
+    width: 60rem;
+    margin: 16px auto;
+    /* background-color: #25282E; */
+    background: rgba( 255, 255, 255, 0.05 );
+    box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.3 );
+    backdrop-filter: blur( 8px );
+    -webkit-backdrop-filter: blur( 4px );
+}
+
+nav .nav-left a button {
+    font-size: 15px;
+    padding: 0.8vw 1.5vw;
+    border-radius: 50px;
+}
+
+nav .nav-left, nav .links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Navbar Ends */
+
+/* Footer */ 
+
+footer {
+    height: 27em;
+    width: 100%;
+    background-color: black;
+    padding: 6em 4em 0 4em;
+}
+
+.footer-upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-upper .tag  h1 {
+    font-size: 7em;
+}
+
+.footer-upper .tag .social-icons i {
+    font-size: 1.9em;
+    margin: 0 0.3em;
+    color: rgb(193, 193, 193);
+    transition: color 0.2s ease-in-out;
+}
+
+.footer-upper .tag .social-icons i:hover {
+    color: white;
+}
+
+.footer-upper .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5em 5em 0 0;
+}
+
+.footer-upper .links ul {
+    list-style: none;
+    margin: 0 2em;
+    font-size: 1.1em
+}
+
+.footer-upper .links ul p {
+    font-size: 1.15em;
+    margin-bottom: 0.3em;
+}
+
+.footer-upper .links ul li {
+    color: rgb(181, 181, 181);
+    margin: 0.2em 0;
     cursor: pointer;
 }

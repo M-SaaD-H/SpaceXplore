@@ -14,6 +14,16 @@
     background-color: white;
     position: absolute;
     z-index: 100;
+    padding: 0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
 }
 
 .forms-cont {
@@ -42,8 +52,8 @@
     position: absolute;
 }
 
-#login-form {
-    margin-top: 5vw;
+#login-form form {
+    margin: 2vw 5vw 0 0;
 }
 
 #login-form form {
@@ -176,4 +186,19 @@ span:hover {
     font-size: 1.2vw;  
     font-weight: 600;  
     border-radius: 10px;
+}
+
+#verify-otp {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+#verify-otp form {
+    height: 100%;
+    width: 100%;
+    padding-right: 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

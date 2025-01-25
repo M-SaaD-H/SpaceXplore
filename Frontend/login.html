@@ -9,18 +9,21 @@
 </head>
 <body>
     <div class="cont">
-        <div class="image box"></div>
+        <div class="image box">
+            <img src="./assets/login.webp" alt="">
+        </div>
         <div class="forms-cont box">
             <div class="form" id="login-form">
                 <form action="http://localhost:4000/api/users/login">
                     <h3>Log In</h3>
                     <p>Don't have an account? <span>Create One</span></p>
+                    <p class="error" style="color: red"></p>
                     <div class="input-field">
-                        <input type="text" spellcheck="false" required>
+                        <input class="email" type="email" spellcheck="false" required>
                         <label for="">Email</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" spellcheck="false" required>
+                        <input class="password" type="password" spellcheck="false" required>
                         <label for="">Password</label>
                     </div>
                     <a href="">Forgot Password</a>
@@ -33,28 +36,38 @@
                     <p>Already have an account? <span>Log in</span></p>
                     <div class="name">
                         <div class="input-field">
-                            <input type="text" required>
+                            <input class="first-name" type="text" required>
                             <label for="">First Name</label>
                         </div>
                         <div class="input-field">
-                            <input type="text" required>
+                            <input class="last-name" type="text" required>
                             <label for="">Last Name</label>
                         </div>
                    </div>
                     <div class="input-field">
-                        <input type="text" required>
+                        <input class="email" type="email" required>
                         <label for="">Email Address</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input class="password" type="password" required>
                         <label for="">Password</label>
                     </div>
                     <div class="input-field">
-                        <input type="password" required>
+                        <input class="confirm-password" type="password" required>
                         <label for="">Confirm Password</label>
                     </div>
                     <input type="checkbox" name="checkbox" value="I agree to the Terms & Conditions" class="checkbox" required/>I agree to the <span>Terms & Conditions</span>
-                    <input type="submit" value="Create account">
+                    <input type="submit" id="signup-btn" value="Create Account">
+                </form>
+            </div>
+            <div class="form" id="verify-otp">
+                <form action="">
+                    <h3>Verify OTP</h3>
+                    <div class="input-field" id="otp">
+                        <input class="otp" type="text" name="OTP" required>
+                        <label for="">OTP</label>
+                    </div>
+                    <input type="submit" value="Continue">
                 </form>
             </div>
         </div>

@@ -40,13 +40,15 @@ function showAllDestinations(destinations) {
         const card = document.createElement("div");
         
         card.innerHTML = `
-        <div class="dest box" key=${dest._id}>
-            <div class="image"><img src=${dest.image}></div>
-            <div class="dets">
-                <h2>${dest.name}</h2>
-                <p>${dest.description}</p>
+        <a href=/Frontend/destination-description.html?id=${dest._id}>
+            <div class="dest box" key=${dest._id}>
+                <div class="image"><img src=${dest.images[0]}></div>
+                <div class="dets">
+                    <h2>${dest.name}</h2>
+                    <p>${dest.tagline}</p>
+                </div>
             </div>
-        </div>
+        </a>
         `
 
         dests.appendChild(card);

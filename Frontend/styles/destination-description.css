@@ -1,12 +1,8 @@
-body {
-    padding: 10vw 15vw 5vw 15vw;
-}
-
 .cont {
-    width: 70vw;
     display: flex;
     flex-direction: column;
-    gap: 1vw
+    gap: 1vw;
+    padding: 10vw 15vw 5vw 15vw;
 }
 
 .images-cont {
@@ -17,6 +13,12 @@ body {
     height: 20vw;
     width: 100%;
     margin-top: 0.5vw;
+}
+
+.images-cont img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .main-img {
@@ -79,7 +81,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1vw;
-    margin-top: 2vw;
 }
 
 .dets-card {
@@ -156,6 +157,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .desc {
     width: 100%;
+    height: 18em;
 }
 
 .desc h2 {
@@ -165,6 +167,22 @@ input[type="number"]::-webkit-inner-spin-button {
 .what-we-offers {
     width: 100%;
     height: 20vw;
+}
+
+.what-we-offers .lists {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.3em;
+}
+
+.what-we-offers .lists ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    width: 45%;
+    font-size: 16px;
 }
 
 .tag .logo {
@@ -239,11 +257,34 @@ input[type="number"]::-webkit-inner-spin-button {
     gap: 1.2vw;
     align-items: center;
     justify-items: center;
-    height: 60vw;
+    height: 40vw;
 }
 
 .rev {
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba( 255, 255, 255, 0.03 );
+    box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.2 );
     width: 100%;
     height: 100%;
+}
+
+.rev .rev-name {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 0.6em;
+}
+
+.rev .rev-name i {
+    font-size: 1.5em;
+    border-radius: 50%;
+    border: 1px solid white;
+    padding: 0.5em;
+}
+
+.rev .rev-name p {
+    font-size: 1.3em;
+}
+
+.rev .rev-content {
+    height: 75%;
+    width: 100%;
 }

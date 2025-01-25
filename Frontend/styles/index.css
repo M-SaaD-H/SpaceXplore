@@ -1,0 +1,176 @@
+/* Hero Section */
+
+.hero-container {
+    background-color: #161719;
+    height: 95vh;
+}
+
+.hero {
+    height: 95vh;
+    margin: 1vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 0;
+    border-radius: 15px;
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, transparent 100%);
+}
+
+.hero .text {
+    margin: 5em 0 0 5em;
+    position: relative;
+    z-index: 10;
+}
+
+.hero .text p {
+    text-shadow: 0 0 40px rgba(0, 0, 0, 1);
+    color: rgb(214, 214, 214);
+    font-weight: 600;
+    font-size: 1.2em;
+    margin: 10px 0 -5px 10px;
+}
+
+.hero .text h1 {
+    line-height: 0.9;
+    font-size: 7em;
+    text-shadow: 0 0 40px black;
+}
+
+.hero .text button {
+    font-size: 1.2em;
+    font-weight: 550;
+    padding: 0.5em 1em;
+    margin: 1em 2em;
+    box-shadow: 0 0 4px black;
+    transition: all 0.5s ease-in-out;
+}
+
+.hero .text button:hover {
+    box-shadow: 0 0 15px #81D1B5;
+    transform: scale(1.015);
+}
+
+.space-ship {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8em;
+    background-color: #161719;
+}
+
+.space-ship .dets {
+    width: 40%;
+}
+
+.space-ship .dets .heading:nth-child(1) {
+    text-wrap: nowrap;
+    text-align: center;
+    font-size: 6em;
+}
+
+.space-ship ul {
+    list-style: none;
+    margin: 2em 0;
+}
+
+.space-ship ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.space-ship .image {
+    width: 35%;
+    height: 45em;
+    margin: 4em 5em 0 0;
+    overflow: hidden;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transition: all 2s ease-in-out;
+}
+
+.space-ship .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Testimonial Cards */
+
+.reviews {
+    background-color: #161719;
+    margin-bottom: 22em;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    padding: 0 2em 7em 2em;
+}
+
+.reviews h1 {
+    font-size: 6em;
+    margin-bottom: 0.4em;
+}
+
+.cards-container {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    max-width: 70em;
+    margin: 0 auto;
+}
+
+.cards-container .card {
+    position: relative;
+    width: 20em;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.01);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 3vw 1.5vw;
+    height: 27em;
+    cursor: pointer;
+}
+
+.cards-container .card .content {
+    margin-top: 50px;
+    height: 100%;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.cards-container .card .content h2 {
+    position: absolute;
+    top: -5%;
+    right: 8%;
+    z-index: -1;
+    font-size: 130px;
+    color: rgba(255, 255, 255, 0.1)
+}
+
+.card p:nth-child(3) {
+    margin-left: auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}

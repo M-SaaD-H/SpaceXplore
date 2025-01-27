@@ -52,6 +52,8 @@ loginForm.addEventListener('submit', async(e) => {
     try {
         const res = await fetch('http://localhost:4000/api/user/login', {
             method: "POST",
+            // credentials: 'include',
+            withCredentials: true,
             headers: {
                 "Content-Type": "application/json"
             },
@@ -60,17 +62,20 @@ loginForm.addEventListener('submit', async(e) => {
 
         const resData = await res.json();
 
+        console.log(resData);
         if (!res.ok) {
-            console.log(resData.msg);
-            alert(resData.msg || 'Login failed');
+            alert(resData.message || 'Login failed');
             return;
         }
+
+        // document.cookie = `accessToken = ${resData.data.accessToken}`
+        // document.cookie = `refreshToken = ${resData.data.refreshToken}`
 
         window.location.href = '/Frontend/index.html'
 
     } catch (error) {
-        console.log(error.message);
-        alert('An error occurred during login. Please try again.');
+        console.log(error);
+        // alert('An error occurred during login. Please try again.');
     }
 });
 

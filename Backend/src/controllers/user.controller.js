@@ -164,7 +164,7 @@ const resendOTP = asyncHandler( async (req, res) => {
 const loginUser = asyncHandler( async (req, res) => {
     const { email, password} = req.body;
 
-    if(!email.trim() || !password.trim()) {
+    if(!email || !password) {
         throw new ApiError(400, "All fields are required");
     }
 
@@ -228,13 +228,13 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
     try {
         const decodedToken = jwt.verify(userRefreshToken, process.env.REFRESH_TOKEN_SECRET);
         
-        const user = await User.findById(decodedToken._id);
+        const user = await User.findById(decodedToken?._id);
         
         if(!user) {
             throw new ApiError(401, "Unauthorized request");
         }
         
-        if(userRefreshToken !== user.refreshAccessToken) {
+        if(userRefreshToken !== user?.refreshToken) {
             throw new ApiError(401, "Refresh Token is expired or used");
         }
     
@@ -260,10 +260,12 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
 });
 
 const getCurrentUser = asyncHandler( async (req, res) => {
+    const user = await User.findById(req.user._id).populate("tours");
+
     return res
     .status(200)
     .json(
-        new ApiResponse(200, req.user, "Current user fetched successfully")
+        new ApiResponse(200, user, "Current user fetched successfully")
     )
 })
 

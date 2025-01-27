@@ -141,3 +141,7 @@
     background-position: center;
     object-fit: cover;
 }
+
+.hide {
+    display: none;
+}

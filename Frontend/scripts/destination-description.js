@@ -28,8 +28,8 @@ gsap.to(pricingBox, {
 	scrollTrigger: {
 		trigger: pricingBox,
 		scroller: "body",
-		start: 'top 5%',
-		end: '118%',
+		start: 'top 15%',
+		end: '98%',
 		pin: true,
 	}
 });

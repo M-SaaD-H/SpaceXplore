@@ -27,10 +27,16 @@ import destinationRouter from "./routes/destination.routes.js"
 import reviewRouter from "./routes/review.routes.js"
 import adminRouter from "./routes/admin.routes.js"
 
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
 app.use('/api/tours', tourRouter);
 app.use('/api/destinations', destinationRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/admin', adminRouter);
+
+
+// To handle the ApiErrors
+import { errorHandler } from "./middlewares/error.middleware.js";
+
+app.use(errorHandler);
 
 export { app }

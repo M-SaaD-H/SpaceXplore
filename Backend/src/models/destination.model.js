@@ -19,7 +19,7 @@ const destinationSchema = new Schema(
             required: true
         },
         travelDate: {
-            type: Date,
+            type: String,
             required: true
         },
         availableTickets: {

@@ -12,6 +12,15 @@ searchBar.addEventListener('click', () => {
     catBox.style.padding = "5vw 3vw 3vw 3vw"
 })
 
+searchBar.addEventListener('input', (e) => {
+    const value = searchBar.value;
+
+    if(value !== "") {
+        catBox.style.height = 0
+        catBox.style.padding = "0 3vw"
+    }
+})
+
 cross.addEventListener('click', (event) => { 
     search.style.left = "93%"
     searchBar.style.padding = "1vw 2vw"
@@ -19,11 +28,17 @@ cross.addEventListener('click', (event) => {
     cross.style.transform = "rotate(0deg)"
     catBox.style.height = 0
     catBox.style.padding = "0 3vw"
+
+    // Clear the input field
+
+    searchBar.value = "";
 })
 
 // Backend Connecion
 
 const dests = document.querySelector(".dests");
+
+let allDestinations = [];
 
 async function fetchData() {
     const response = await fetch("http://localhost:4000/api/destinations/get-all-destinations");
@@ -35,8 +50,18 @@ async function fetchData() {
     }
 }
 
+searchBar.addEventListener('input', (e) => {
+    const value = e.target.value;
+
+    allDestinations.forEach((d) => {
+        const isVisible = d.name.toLowerCase().includes(value.toLowerCase());
+
+        d.element?.classList.toggle("hide", !isVisible);
+    })
+})
+
 function showAllDestinations(destinations) {
-    destinations.map((dest) => {
+    allDestinations = destinations.map((dest) => {
         const card = document.createElement("div");
         
         card.innerHTML = `
@@ -52,6 +77,12 @@ function showAllDestinations(destinations) {
         `
 
         dests.appendChild(card);
+
+        return {
+            name: dest.name,
+            tagline: dest.tagline,
+            element: card
+        }
     })
 }
 

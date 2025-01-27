@@ -10,5 +10,5 @@ fetch('http://localhost:4000/api/user/current-user', {
 .then(res => res.json())
 .then(data => {
     console.log(data)
-    name.innerText = data.fullName.firstName;
+    // name.innerText = data.fullName.firstName;
 })

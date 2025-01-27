@@ -19,6 +19,39 @@ app.use(express.urlencoded({
 
 app.use(cookieParser());
 
+
+// Frontend Routes
+import path from "path";
+app.set("view engine","ejs");
+
+// Frontend Routes
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+
+app.use("/views", express.static("views"));
+
+// app.get ("/",(req,res)=>{
+//     res.render("index")
+// })
+
+// app.get('/login', (req, res) => {
+//     res.render('login');
+// })
+
+
+// app.get('/destinations', (req, res) => {
+//     res.render("destinations")
+// })
+
+import frontendRotuer from "./routes/frontend.routes.js";
+
+app.use(frontendRotuer);
+
+// import frontendRoutes from "./routes/frontend.routes.js"
+
+// frontendRoutes()
+
+
 // Importing routes
 
 import userRouter from "./routes/user.routes.js";

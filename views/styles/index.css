@@ -6,8 +6,9 @@
 }
 
 .hero {
-    height: 95vh;
+    height: 98vh;
     margin: 1vw;
+    margin-top: 0.5vw;
     position: relative;
     display: flex;
     align-items: center;

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/views/styles/global.css">
+    <link rel="stylesheet" href="/views/styles/destination-description.css">
+</head>
+<body>
+    <%- include("partials/navbar");%>
+
+    <div class="cont">
+        <div class="images box">
+            <h1>'Tagline'</h1>
+            <div class="images-cont">
+                <div class="main-img"></div>
+                <div class="sub-imgs">
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                    <div class="img"></div>
+                </div>
+            </div>
+        </div>
+        <div class="dets">
+            <div class="left">
+                <div class="box">
+                    <div class="dets-cards">
+                        <div class="dets-card box">
+                            <i class="fa-regular fa-clock"></i>
+                            <h2>'duration'</h2>
+                            <p>Duration</p>
+                        </div>
+                        <div class="dets-card box">
+                            <i class="fa-solid fa-star"></i>
+                            <h2>5.0</h2>
+                            <p>Rating</p>
+                        </div>
+                        <div class="dets-card box">
+                            <i class="fa-solid fa-pen"></i>
+                            <h2>'count'</h2>
+                            <p>Reviews</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="desc box">
+                    <h2>Description</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum debitis laboriosam animi officiis sunt, consequatur similique saepe maiores dolorum porro excepturi aspernatur consequuntur nihil corporis nobis repellendus quaerat maxime odio.
+                    Voluptatibus aliquam neque dolorum cum totam, ratione voluptatum accusamus cupiditate delectus corporis unde at nesciunt aliquid alias? Ipsa quam ullam molestiae odio quas voluptas iste libero dolore explicabo! Dicta, cumque.
+                    Hic, expedita? Quidem, nesciunt earum illo nobis corrupti non a similique, excepturi officia consectetur eum, veritatis fugit. A, dolores sunt. Placeat nesciunt nostrum suscipit voluptates. Accusamus, ducimus. Animi, harum illum.</p>
+                </div>
+                <div class="what-we-offers box">
+                    <h2>What we Offers</h2>
+                    <div class="lists">
+                        <ul>
+                            <li>Unmatched Safety and Expertise</li>
+                            <li>Seamless & Personalized Travel Experience</li>
+                            <li>Comprehensive Training and Support</li>
+                            <li>Cutting-Edge Technology & Innovation</li>
+                        </ul>
+                        <ul>
+                            <li>Unforgettable Views & Experiences</li>
+                            <li>State-of-the-Art Spacecraft & Facilities</li>
+                            <li>Sustainability and Environmental Responsibility</li>
+                            <li>Community of Space Enthusiasts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pricing box">
+                <h1>'price'</h1>
+                <h2>'travel-date'</h2>
+                <li style="list-style: none;">'No.' tickets remaining</li>
+                <p>Book for your family too</p>
+                <div class="no-of-tickets">
+                    <i class="fa-solid fa-minus box" id="dec"></i>
+                    <input type="number" name="no-of-tickets" id="input" class="box" min="1" value="1">
+                    <i class="fa-solid fa-plus box" id="inc"></i>
+                </div>
+                <a href="/checkout" style="width: 100%;"><button style="width: 100%;" class="btn">Book Now</button></a>
+            </div>
+        </div>
+        <hr style="opacity: 0.3; margin: 2vw 0;">
+        <div class="reviews box">
+            <div class="tag">
+                <div class="logo">
+                    <img id="left" src="/views/assets/left.avif" alt="">
+                    <h1>5.0</h1>
+                    <img id="right" src="/views/assets/right.avif" alt="">
+                </div>
+                <p>One of the most loved destinations on SpaceXplore<br>based on ratings, reviews and reliability</p>
+            </div>
+            <div class="rating-tags">
+                <div class="rating-tag">
+                    <p>Cleanliness</p>
+                    <p>5.0</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M306.67-80q-27 0-46.84-19.83Q240-119.67 240-146.67v-180.66q0-78.67 23-151.84 23-73.16 74-145.16-42.67-1.67-69.83-32Q240-686.67 240-726.67v-46q0-46 36.83-76.16 36.84-30.17 79.84-25.84l370 38.34q16.33 2 25.16 14.83 8.84 12.83 8.84 25.17v97q0 16.33-9.5 27.16-9.5 10.84-24.5 12.84l-41.34 4q10.67 49 36.34 88.33 25.66 39.33 58.33 61.67l-33.33 56.66q-48.34-27.66-80.34-83.5Q634.33-588 620-649l-66 7.33q8 56.67 30.83 109.34 22.84 52.66 54.5 104.33 18.67 30 28 66.67 9.34 36.66 9.34 72.66v142q0 27-19.84 46.84Q637-80 610-80H306.67Zm.66-689.33v42.66q0 19.34 14.67 30 14.67 10.67 32 8l340-34.66v-50L354-808q-17.33-2-32 8.67-14.67 10.66-14.67 30Zm-.66 622.66H610v-142q0-26.66-6.83-53.33-6.84-26.67-20.5-50.33-37.67-64-60.34-118.5-22.66-54.5-35-124.17L422-628.67 392.67-588Q349.33-528.33 328-463.83t-21.33 136.5v180.66Zm0 0H610 306.67Z"/></svg>
+                </div>
+                <hr style="transform: rotate(90deg); width: 50%; opacity: 0.35;">
+                <div class="rating-tag">
+                    <p>Accuracy</p>
+                    <p>5.0</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M422-297.33 704.67-580l-49.34-48.67L422-395.33l-118-118-48.67 48.66L422-297.33ZM480-80q-82.33 0-155.33-31.5-73-31.5-127.34-85.83Q143-251.67 111.5-324.67T80-480q0-83 31.5-156t85.83-127q54.34-54 127.34-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82.33-31.5 155.33-31.5 73-85.5 127.34Q709-143 636-111.5T480-80Zm0-66.67q139.33 0 236.33-97.33t97-236q0-139.33-97-236.33t-236.33-97q-138.67 0-236 97-97.33 97-97.33 236.33 0 138.67 97.33 236 97.33 97.33 236 97.33ZM480-480Z"/></svg>
+                </div>
+                <hr style="transform: rotate(90deg); width: 50%; opacity: 0.35;">
+                <div class="rating-tag">
+                    <p>Crew</p>
+                    <p>5.0</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M0-240v-56.33q0-40.05 42.33-65.19 42.34-25.15 111.25-25.15 12.45 0 23.93.5 11.49.5 22.49 2.27-10 18.57-15 38.11-5 19.55-5 40.79v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-21.91-4.5-41.29t-14.17-37.56q11-1.82 22.28-2.32 11.29-.5 23.06-.5 69 0 111.16 24.68Q960-337.31 960-296.33V-240H780Zm-471.67-66.67H652v-4q-3.33-31.33-52.17-52Q551-383.33 480-383.33t-119.83 20.66Q311.33-342 308.33-310v3.33ZM153.04-420q-30.04 0-51.54-21.54T80-493.33q0-30.67 21.54-52 21.54-21.34 51.79-21.34 30.67 0 52 21.34 21.34 21.33 21.34 52.29 0 30.04-21.34 51.54Q184-420 153.04-420Zm653.34 0q-30.05 0-51.55-21.54-21.5-21.54-21.5-51.79 0-30.67 21.55-52 21.54-21.34 51.79-21.34 30.66 0 52 21.34Q880-524 880-493.04q0 30.04-21.33 51.54-21.34 21.5-52.29 21.5ZM480-480q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm.23-66.67q22.77 0 37.94-15.4 15.16-15.4 15.16-38.16 0-22.77-15.26-37.94-15.27-15.16-37.84-15.16-22.56 0-38.06 15.26-15.5 15.27-15.5 37.84 0 22.56 15.4 38.06 15.4 15.5 38.16 15.5Zm.1 240ZM480-600Z"/></svg>
+                </div>
+                <hr style="transform: rotate(90deg); width: 50%; opacity: 0.35;">
+                <div class="rating-tag">
+                    <p>Value</p>
+                    <p>5.0</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M446.5-80q-12.5 0-25-4.83-12.5-4.84-22.5-14.5l-299.33-300q-10-9.34-14.84-21.84-4.83-12.5-4.83-25t4.7-25q4.71-12.5 14.97-22.5l366-366.33q9.2-9.17 21.74-14.58 12.54-5.42 25.92-5.42h300.34q27.5 0 47.08 19.58 19.58 19.59 19.58 47.09v299.66q0 13.4-5.33 25.53Q869.67-476 860.67-467l-367 367.67Q483.67-90 471.33-85 459-80 446.5-80Zm-1.17-65.33 368.34-370v-298h-300L146-445.33l299.33 300Zm265-510.67q22.34 0 38.5-16.17Q765-688.33 765-710.67q0-22.33-16.17-38.5-16.16-16.16-38.5-16.16-22.33 0-38.5 16.16-16.16 16.17-16.16 38.5 0 22.34 16.16 38.5Q688-656 710.33-656ZM480-479.33Z"/></svg>
+                </div>
+            </div>
+            <hr style="opacity: 0.3; margin: 3vw 0;">
+            <div class="revs">
+                <div class="rev box">
+                    <div class="rev-name">
+                        <i class="fa-solid fa-user"></i>
+                        <p></p>
+                    </div>
+                    <div class="rev-content"></div>
+                </div>
+                <div class="rev box"></div>
+                <div class="rev box"></div>
+                <div class="rev box"></div>
+            </div>
+        </div>
+        <hr style="opacity: 0.3; margin: 2vw 0;">
+        <div class="location box">
+            <h1 class="heading" style="font-size: 4.4vw; margin-top: 1.3vw; letter-spacing: 1px;">The Starting Point of Your Space Adventure</h1>
+            <hr style="opacity: 0.3; margin: 0;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d650.9101761786715!2d74.89561622429193!3d32.80329131714115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391e81dc7774b387%3A0x71d3c1a41444b82d!2sOpen%20Air%20Theatre%20(OAT)%20IIT%20Jammu!5e0!3m2!1sen!2sin!4v1735557519265!5m2!1sen!2sin" width="100%" height="500" style="border:0; margin-top: 2vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <%- include("partials/footer");%>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/views/scripts/destination-description.js"></script>
+</body>
+</html>

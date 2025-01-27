@@ -65,7 +65,7 @@ function showAllDestinations(destinations) {
         const card = document.createElement("div");
         
         card.innerHTML = `
-        <a href=/Frontend/destination-description.html?id=${dest._id}>
+        <a href="/destination/d/?id=${dest._id}">
             <div class="dest box" key=${dest._id}>
                 <div class="image"><img src=${dest.images[0]}></div>
                 <div class="dets">

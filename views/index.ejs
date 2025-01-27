@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceXplore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/views/styles/index.css">
+    <link rel="stylesheet" href="/views/styles/global.css">
+</head>
+<body>
+    <%- include("partials/navbar");%>
+
+    <div class="hero-container">
+        <div class="hero">
+            <img src="/views/assets/background.webp" alt="">
+            <div class="text">
+                <p>Beyond the Horizon</p>
+                <h1>LUXURY<br>AMONG<br>STARS</h1>
+                <a href="./destinations.html"><button class="btn">Start your Journey</button></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="space-ship">
+        <div class="dets">
+            <h1 class="heading">The Vessel of Your<br>Adventure</h1>
+            <hr style="margin: 0 1.5em 2em 1.5em; opacity: 0.3;">
+            <h2>Chandrayaan-3</h2>
+            <h1 class="heading">Overview</h1>
+            <ul>
+                <li>
+                    <p>HEIGHT</p>
+                    <p>70 m / 229.6 ft</p>
+                </li>
+                <li>
+                    <p>DIAMETER</p>
+                    <p>3.7 m / 12 ft</p>
+                </li>
+                <li>
+                    <p>MASS</p>
+                    <p>549,054 kg / 1,207,920 lb</p>
+                </li>
+                <li>
+                    <p>PAYLOAD TO LEO</p>
+                    <p>22,800 kg / 50,265 lb</p>
+                </li>
+                <li>
+                    <p>PAYLOAD TO GTO</p>
+                    <p>8,300 kg / 18,300 lb</p>
+                </li>
+                <li>
+                    <p>PAYLOAD TO MARS</p>
+                    <p>4,020 kg / 8,860 lb</p>
+                </li>
+            </ul>
+        </div>
+        <div class="image">
+            <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/photo_gallery/202307/f0vbrojxwaq7mya.jpg?VersionId=EBTDLjL2tKoYV58BepxEoFQZakS0a8Ei&size=2734:4096" alt="">
+        </div>
+    </div>
+
+    <div class="reviews">
+        <h1 class="heading">From Earth to Stars :<br>Traveller Experiences</h1>
+        <div class="cards-container">
+            <div class="card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.2" data-tilt-reverse="true">
+                <div class="content">
+                    <h2>01</h2>
+                    <p>An unforgettable experience! The team was exceptional, and the views of Earth from space were beyond stunning. Zero gravity was so much fun, and the entire journey was smooth and safe. I can’t recommend this enough to anyone looking for an out-of-this-world adventure!</p>
+                    <p>- Mr. Anonymous</p>
+                </div>
+            </div>
+            <div class="card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.2" data-tilt-reverse="true">
+                <div class="content">
+                    <h2>02</h2>
+                    <p>This was a life-changing experience! Floating in space and seeing Earth from above was surreal. The crew ensured everything was perfect, and the thrill of zero gravity was unmatched. It’s truly an adventure that changes your perspective. I’ll never forget this incredible journey!</p>
+                    <p>- Mr. Anonymous</p>
+                </div>
+            </div>
+            <div class="card" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.2" data-tilt-reverse="true">
+                <div class="content">
+                    <h2>03</h2>
+                    <p>Absolutely mind-blowing! Being in space was indescribable, and the crew made everything so easy and enjoyable. From seeing Earth’s curvature to floating weightlessly, every moment was a dream come true. If you get the chance, do it—you won’t regret it!</p>
+                    <p>- Mr. Anonymous</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer");%>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/views/scripts/global.js"></script>
+    <script src="/views/scripts/index.js"></script>
+</body>
+</html>

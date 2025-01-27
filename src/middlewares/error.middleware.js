@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 import { ApiError } from "../utils/apiError.js";
 
 const errorHandler = (err, req, res, next) => {
-    const error = err;
+    let error = err;
 
     if(!(error instanceof ApiError)) {
-        const statusCode = error.statusCode || error instanceof mongoose.error ? 500 : 400;
+        const statusCode = error.statusCode || (error instanceof mongoose.Error ? 500 : 400);
 
         const message = error.message || "Something went wrong";
 

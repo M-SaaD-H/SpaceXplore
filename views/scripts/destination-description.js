@@ -46,7 +46,7 @@ const tickets = document.querySelector('.cont .dets .pricing li');
 const detsCards = document.querySelectorAll('.cont .dets .left .box .dets-cards .dets-card');
 const description = document.querySelector('.cont .dets .left .desc p');
 const reviews = document.querySelectorAll('.cont .reviews .revs .rev');
-console.log(reviews)
+
 
 const params = new URLSearchParams(window.location.search);
 const destinationId = params.get('id');

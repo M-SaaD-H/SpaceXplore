@@ -82,7 +82,7 @@ function sendBookingComfirmationEmail(usersname, tour, userEmail) {
                     <li>Booking ID: ${tour._id}</li>
                     <li>Destination: ${tour.destination.name}</li>
                     <li>Departure Date: ${tour.destination.travelDate}</li>
-                    <li>Total Amount: ${tour.destination.price}</li>
+                    <li>Total Amount: ${tour.destination.price} Cr</li>
                 </ul>
                 <br>
                 <p>Important Information:</p>

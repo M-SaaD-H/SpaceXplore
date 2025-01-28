@@ -1,6 +1,6 @@
 const name = document.querySelector('#name');
 const tourCount = document.querySelector('#tour-count');
-const toursContainer = document.querySelector('#tours');
+const toursContainer = document.querySelector('.tours');
 
 fetch('/api/user/current-user', {
     method: "GET",
@@ -28,10 +28,40 @@ fetch('/api/user/current-user', {
             <p>${t.destination.price}</p>
             <p>${t.destination.travelDate}</p>
         </div>
+        <button class="btn cancel-btn" style="background-color: #EB5160; color: white;">Cancel</button>
         `
 
         tour.classList.add('tour');
+        tour.setAttribute('id', t._id);
 
         toursContainer.appendChild(tour);
+    });
+});
+
+// Cancel Tour funtionality
+
+const cancelBtns = document.querySelector('.container .tours-container .tours');
+console.log(cancelBtns);
+
+cancelBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        console.log('clicked');
+        const tour = btn.parentElement;
+        const tourID =tour.getAttribute(id);
+
+        fetch(`/api/tours/cancel-tour`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ tourID })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success") {
+                alert('tour cancelled successfully');
+                location.reload();
+            }
+        });
     });
 })

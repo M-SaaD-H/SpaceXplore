@@ -59,12 +59,14 @@ import tourRouter from "./routes/tour.routes.js";
 import destinationRouter from "./routes/destination.routes.js"
 import reviewRouter from "./routes/review.routes.js"
 import adminRouter from "./routes/admin.routes.js"
+import paymentRouter from "./routes/payment.routes.js"
 
 app.use('/api/user', userRouter);
 app.use('/api/tours', tourRouter);
 app.use('/api/destinations', destinationRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/payment', paymentRouter);
 
 
 // To handle the ApiErrors

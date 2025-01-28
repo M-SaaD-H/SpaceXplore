@@ -13,10 +13,10 @@ const availableTickets = document.getElementById('available-tickets')
 const duration = document.getElementById('duration')
 
 const params = new URLSearchParams(window.location.search);
-const destinationId = params.get('id');
+const destinationID = params.get('id');
 
-if(destinationId) {
-	fetch(`/api/destinations/d/${destinationId}`)
+if(destinationID) {
+	fetch(`/api/destinations/d/${destinationID}`)
 	.then(res => res.json())
 	.then(fetchedData => {
 		// Fill this data in frontend
@@ -78,5 +78,97 @@ form.addEventListener('submit', async(e) => {
     }
 
     // Now proceed to pay -> Razorpay Integration
-    alert('You can proceed to pay');
-})
+});
+
+let user;
+
+(async function() {
+    const res = await fetch('/api/user/current-user', {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+    if(!res.ok) return;
+
+    const data = await res.json();
+
+    user = data.data;
+})()
+
+
+
+// Payment Gateway Integration
+
+async function proceedToPay(e) {
+    // e.preventDefault();
+    console.log('Proceeding to pay');
+
+    fetch('/api/tours/create-order', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ destinationID })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+
+        createRazorpayOrder(data);
+    });
+}
+
+let orderID;
+
+function createRazorpayOrder(order) {
+    orderID = order.orderID;
+
+    const options = {
+        key: "rzp_test_oPvFtXGBmkeCZz",
+        amount: order.amount,
+        currency: order.currency,
+        name: "SpaceXplore",
+        description: "Embark on an unforgettable journey to your dream space destination!",
+        // logo
+        order_id: order.orderID,
+        handler: async (res) => {
+            alert('Payment successful');
+            window.location.href = '/';
+
+            const verifyPayment = await fetch('/api/tours/verify-payment', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    destinationID,
+                    // razorpayPaymentID: res.razorpay_payment_id,
+                    // razorpayOrderID: orderID,
+                    // razorpaySignature: res.razorpay_signature
+                })
+            });
+
+            // const result = await verifyPayment.json();
+
+            // if(result.success) {
+            //     alert('Tour booked successfully');
+            // } else {
+            //     alert('Payment verification failed');
+            //     console.log(result);
+            // }
+        },
+        prefill: {
+            name: `${user.fullName.firstName} ${user.fullName.lastName}`,
+            email: user.email,
+        },
+        theme: {
+            color: "#81D1B5"
+        }
+    }
+    
+    const rzp = new Razorpay(options);
+
+    rzp.open();
+}

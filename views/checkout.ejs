@@ -10,7 +10,7 @@
 <body>
     <div class="payment-dets">
         <h1 class="heading">Confirm Your Details</h1>
-        <form action="">
+        <form onsubmit="proceedToPay()">
             <div class="input-field">
                 <label for="">Email Address</label>
                 <input id="email" placeholder="Email" type="text" name="email" required spellcheck="false">
@@ -62,6 +62,7 @@
         </div>
     </div>
 
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="/views/scripts/checkout.js"></script>
 </body>
 </html>

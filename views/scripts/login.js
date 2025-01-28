@@ -68,10 +68,7 @@ loginForm.addEventListener('submit', async(e) => {
             return;
         }
 
-        // document.cookie = `accessToken = ${resData.data.accessToken}`
-        // document.cookie = `refreshToken = ${resData.data.refreshToken}`
-
-        window.location.href = '/Frontend/index.html'
+        window.location.href = '/'
 
     } catch (error) {
         console.log(error);
@@ -148,10 +145,10 @@ function verifyOTPAndCreateUser(data) {
             signupForm.style.display = 'block';
             verifyOTP.style.display = 'none';
 
-            window.location.href = '/Frontend/index.html'
+            window.location.href = '/'
         })
         .catch(err => {
-            console.log(err.message);
+            alert(err.message);
         })
     })
 }

@@ -39,11 +39,11 @@ form .input-field {
 }
 
 form .input-field input {
-    font-size: 1.3vw;
+    font-size: 1em;
     border: none;
     outline: none;
     color: black;
-    padding: 0.3vw 0.7vw;
+    padding: 0.5em 1em;
     border-radius: 5px;
 }
 
@@ -73,13 +73,20 @@ form .input-field input {
 }
 
 .destination-dets .image {
-    background-color: red;
+    background-color: black;
     height: 20vw;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.destination-dets .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .destination-dets h1 {

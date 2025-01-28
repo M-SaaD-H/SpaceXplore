@@ -13,55 +13,51 @@
         <form action="">
             <div class="input-field">
                 <label for="">Email Address</label>
-                <input type="text" name="email" required spellcheck="false">
+                <input id="email" placeholder="Email" type="text" name="email" required spellcheck="false">
             </div>
             <div class="input-field">
                 <label for="">Password</label>
-                <input type="password" name="password" required spellcheck="false">
+                <input id="password" placeholder="Password" type="password" name="password" required spellcheck="false">
             </div>
             <div class="amount-dets">
                 <div class="subtotal">
                     <p>Subtotal</p>
-                    <p>'subtotal'</p>
+                    <p id="subtotal">'subtotal'</p>
                 </div>
                 <div class="platform-fee">
                     <p>Platform Fee</p>
-                    <p>'platform-fee'</p>
+                    <p id="platform-fee">'platform-fee'</p>
                 </div>
                 <div class="tax">
-                    <p>GST</p>
-                    <p>'GST'</p>
+                    <p>GST (18%)</p>
+                    <p id="gst">'GST'</p>
                 </div>
                 <hr>
                 <div class="total-amount">
                     <p>Total Amount</p>
-                    <p>'total-amount'</p>
+                    <p id="total-amount">'total-amount'</p>
                 </div>
             </div>
             <input class="btn" type="submit" value="Proceed to pay">
         </form>
     </div>
     <div class="destination-dets">
-        <div class="image">
-            Image
+        <div class="image" id="image">
+            <img src="" alt="">
         </div>
-        <h1 class="heading">'Name'</h1>
+        <h1 class="heading" id="name">'Name'</h1>
         <div class="dets">
-            <div class="description">
-                <p>Description</p>
-                <p>'description'</p>
-            </div>
             <div class="travel-date">
                 <p>Travel Date</p>
-                <p>'travel-date'</p>
+                <p id="travel-date">'travel-date'</p>
             </div>
             <div class="available-tickets">
                 <p>Available Tickets</p>
-                <p>'available-tickets'</p>
+                <p id="available-tickets">'available-tickets'</p>
             </div>
             <div class="duration">
                 <p>Duration</p>
-                <p>'duration'</p>
+                <p id="duration">'duration'</p>
             </div>
         </div>
     </div>

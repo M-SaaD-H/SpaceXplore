@@ -14,47 +14,22 @@
     <div class="container">
         <div class="card box">
             <div class="card-icon"><i class="fa-solid fa-user"></i></div>
-            <h1>'Name'</h1>
+            <h1 id="name">'Name'</h1>
             <div class="tour-count">
                 <p>Your Space<br>Expeditions</p>
-                <p>'count'</p>
+                <p id="tour-count">'count'</p>
             </div>
         </div>
-        <div class="tours box">
+        <div class="tours-container box">
             <h1 class="heading">Your Space Expeditions</h1>
-            <div class="tour">
-                <div class="image-name">
-                    <div class="image"><img src="" alt=""></div>
-                    <h2>'Name of Destination'</h2>
-                </div>
-                <div class="price-date">
-                    <p>'Price'</p>
-                    <p>'Travel Date'</p>
-                </div>
-            </div>
-            <div class="tour">
-                <div class="image-name">
-                    <div class="image"><img src="" alt=""></div>
-                    <h2>'Name of Destination'</h2>
-                </div>
-                <div class="price-date">
-                    <p>'Price'</p>
-                    <p>'Travel Date'</p>
-                </div>
-            </div>
-            <div class="tour">
-                <div class="image-name">
-                    <div class="image"><img src="" alt=""></div>
-                    <h2>'Name of Destination'</h2>
-                </div>
-                <div class="price-date">
-                    <p>'Price'</p>
-                    <p>'Travel Date'</p>
-                </div>
+            <div id="tours">
+                <!-- Tours will be filled here -->
             </div>
         </div>
     </div>
 
     <%- include("partials/footer");%>
+
+    <script src="/views/scripts/profile.js"></script>
 </body>
 </html>

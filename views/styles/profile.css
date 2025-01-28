@@ -4,8 +4,7 @@ body {
 
 .container {
     width: 80em;
-    min-height: 100vh;
-    margin: 10em auto 7em auto;
+    margin: 10em auto 15em auto;
     position: relative;
 }
 
@@ -35,13 +34,17 @@ body {
     justify-content: space-between;
 }
 
-.tours {
+.tours-container {
     margin-left: 22em;
     margin-top: -21em;
     min-height: 100%;
+}
+
+#tours {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+    margin: 1em 0;
 }
 
 .tour {
@@ -72,4 +75,21 @@ body {
     height: 100%;
     border-radius: 5px;
     background-color: white;
+    overflow: hidden;
+}
+
+.tour .image-name .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Hide the login Btn -> Jugaad */
+
+#login-btn {
+    display: none;
+}
+
+#profile-btn {
+    display: block;
 }

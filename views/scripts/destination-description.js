@@ -93,3 +93,11 @@ if(destinationId) {
 		console.log(err)
 	})
 }
+
+// Checkout redirection
+
+const bookBtn = document.getElementById('book-btn');
+
+bookBtn.addEventListener('click', () => {
+	window.location.href = `/checkout/?id=${destinationId}`;
+})

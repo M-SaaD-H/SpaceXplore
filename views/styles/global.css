@@ -109,6 +109,39 @@ nav .nav-left, nav .links {
     gap: 12px;
 }
 
+#profile-btn {
+    height: 100%;
+    font-size: 1.5em;
+    margin-right: 0.6em;
+    cursor: pointer;
+}
+
+.logout-dropdown {
+    background-color: white;
+    padding: 0.3em;
+    border-radius: 10px;
+    position: fixed;
+    right: 0;
+    top: 105%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.logout-dropdown * {
+    color: black;
+    border: none;
+    outline: none;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.logout-dropdown *:hover {
+    background-color: rgb(217, 217, 217);
+}
+
 /* Navbar Ends */
 
 /* Footer */ 
@@ -163,4 +196,10 @@ footer {
     color: rgb(181, 181, 181);
     margin: 0.2em 0;
     cursor: pointer;
+}
+
+/* Hide Class */
+
+.hide {
+    display: none;
 }

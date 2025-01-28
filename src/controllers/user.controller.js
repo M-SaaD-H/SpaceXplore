@@ -5,6 +5,7 @@ import { User } from "../models/user.model.js"
 import jwt from "jsonwebtoken"
 import { sendOTPEmail, sendResetPassConfirmationEmail, sendResetPassOTPEmail, sendWelcomeEmail } from "../utils/nodemailer.js"
 import { OTPVerification } from "../models/otpVerification.model.js"
+import { populate } from "dotenv"
 
 // options for cookies
 const options = {
@@ -260,7 +261,13 @@ const refreshAccessToken = asyncHandler( async (req, res) => {
 });
 
 const getCurrentUser = asyncHandler( async (req, res) => {
-    const user = await User.findById(req.user._id).populate("tours");
+    const user = await User.findById(req.user._id).populate({
+        path: 'tours',
+        populate: {
+            path: 'destination',
+            model: 'Destination'
+        }
+    });
 
     return res
     .status(200)

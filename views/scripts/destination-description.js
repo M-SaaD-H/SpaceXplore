@@ -52,7 +52,7 @@ const params = new URLSearchParams(window.location.search);
 const destinationId = params.get('id');
 
 if(destinationId) {
-	fetch(`http://localhost:4000/api/destinations/d/${destinationId}`)
+	fetch(`/api/destinations/d/${destinationId}`)
 	.then(res => res.json())
 	.then(fetchedData => {
 		// Fill this data in frontend

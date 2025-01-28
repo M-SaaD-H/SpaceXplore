@@ -16,7 +16,7 @@ const params = new URLSearchParams(window.location.search);
 const destinationId = params.get('id');
 
 if(destinationId) {
-	fetch(`http://localhost:4000/api/destinations/d/${destinationId}`)
+	fetch(`/api/destinations/d/${destinationId}`)
 	.then(res => res.json())
 	.then(fetchedData => {
 		// Fill this data in frontend
@@ -54,7 +54,7 @@ form.addEventListener('submit', async(e) => {
     const email = emailField.value.trim();
     const password = passwordField.value.trim();
 
-    const res = await fetch('http://localhost:4000/api/user/current-user', {
+    const res = await fetch('/api/user/current-user', {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

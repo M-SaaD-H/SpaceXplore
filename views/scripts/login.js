@@ -50,7 +50,7 @@ loginForm.addEventListener('submit', async(e) => {
     const data = { email, password }
 
     try {
-        const res = await fetch('http://localhost:4000/api/user/login', {
+        const res = await fetch('/api/user/login', {
             method: "POST",
             // credentials: 'include',
             withCredentials: true,
@@ -99,7 +99,7 @@ signupForm.addEventListener('submit', (e) => {
         password
     }
 
-    fetch('http://localhost:4000/api/user/register', {
+    fetch('/api/user/register', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -128,7 +128,7 @@ function verifyOTPAndCreateUser(data) {
         const OTP = verifyOTPForm.querySelector('input').value.trim();
 
 
-        fetch('http://localhost:4000/api/user/verify-otp', {
+        fetch('/api/user/verify-otp', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

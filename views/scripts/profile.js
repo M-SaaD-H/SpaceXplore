@@ -2,7 +2,7 @@ const name = document.querySelector('#name');
 const tourCount = document.querySelector('#tour-count');
 const toursContainer = document.querySelector('#tours');
 
-fetch('http://localhost:4000/api/user/current-user', {
+fetch('/api/user/current-user', {
     method: "GET",
     headers: {
         "Content-Type": "application/json"

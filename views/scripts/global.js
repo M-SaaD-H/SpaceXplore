@@ -3,7 +3,7 @@ const profileBtn = document.getElementById('profile-btn');
 
 const name = document.querySelector('.nav nav .logo h1');
 
-const user = fetch('http://localhost:4000/api/user/current-user', {
+const user = fetch('/api/user/current-user', {
     method: "GET",
     headers: {
         "Content-Type": "application/json"
@@ -39,7 +39,7 @@ document.getElementById('profile-link').addEventListener('click', () => {
 });
 
 document.getElementById('logout-btn').addEventListener('click', () => {
-    fetch('http://localhost:4000/api/user/logout', {
+    fetch('/api/user/logout', {
         method: 'POST'
     })
     .then(res => {

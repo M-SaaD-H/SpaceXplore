@@ -41,7 +41,7 @@ const dests = document.querySelector(".dests");
 let allDestinations = [];
 
 async function fetchData() {
-    const response = await fetch("http://localhost:4000/api/destinations/get-all-destinations");
+    const response = await fetch("/api/destinations/get-all-destinations");
 
     const data = await response.json();
     

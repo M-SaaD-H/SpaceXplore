@@ -7,6 +7,7 @@ import { Destination } from "../models/destination.model.js";
 import { sendBookingCancellationEmail, sendBookingComfirmationEmail } from "../utils/nodemailer.js";
 import { razorpay } from "../utils/razorpay/razorpay.js";
 import { Order } from "../models/order.model.js";
+import crypto from "crypto";
 
 
 const createOrder = asyncHandler( async (req, res) => {
@@ -72,12 +73,12 @@ const createOrder = asyncHandler( async (req, res) => {
 });
 
 const verifyPaymentAndCreateTour = asyncHandler( async (req, res) => {
-    const { destinationID } = req.body;
+    const { destinationID, razorpayOrderID, razorpayPaymentID, razorpaySignature } = req.body;
     const userID = req.user?._id;
 
-    // if(!destinationID || !razorpayOrderID || !razorpayPaymentID || !razorpaySignature) {
-    //     throw new ApiError(404, "All fields are required");
-    // }
+    if(!destinationID || !razorpayOrderID || !razorpayPaymentID || !razorpaySignature) {
+        throw new ApiError(404, "All fields are required");
+    }
 
     const destination = await Destination.findById(destinationID);
     
@@ -91,15 +92,15 @@ const verifyPaymentAndCreateTour = asyncHandler( async (req, res) => {
     
     // Verify payment
     
-    // const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_WEBHOOK_SECRET)
-    // .update(`${razorpayOrderID}|${razorpayPaymentID}`)
-    // .digest("hex");
+    const expectedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+    .update(`${razorpayOrderID}|${razorpayPaymentID}`)
+    .digest("hex");
     
-    // if(razorpaySignature !== expectedSignature) {
-        //     throw new ApiError(400, "Invalid signature");
-        // }
+    if(razorpaySignature !== expectedSignature) {
+        throw new ApiError(400, "Invalid signature");
+    }
         
-        // Now proceed to book the tour
+    // Now proceed to book the tour
         
     destination.availableTickets = destination.availableTickets - 1;
     

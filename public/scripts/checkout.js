@@ -116,15 +116,14 @@ async function proceedToPay(e) {
     .then(data => {
         console.log(data);
 
-        createRazorpayOrder(data);
-    });
+        createRazorpayOrder(data.data);
+    })
+    .catch(err => alert(err.message));
 }
 
 let orderID;
 
 function createRazorpayOrder(order) {
-    orderID = order.orderID;
-
     const options = {
         key: "rzp_test_oPvFtXGBmkeCZz",
         amount: order.amount,
@@ -133,9 +132,10 @@ function createRazorpayOrder(order) {
         description: "Embark on an unforgettable journey to your dream space destination!",
         // logo
         order_id: order.orderID,
-        handler: async (res) => {
-            alert('Payment successful');
-            window.location.href = '/';
+        handler: async function (res) {
+            // alert('Payment successful');
+            console.log("res =", res);
+            // window.location.href = '/';
 
             const verifyPayment = await fetch('/api/tours/verify-payment', {
                 method: "POST",
@@ -144,20 +144,21 @@ function createRazorpayOrder(order) {
                 },
                 body: JSON.stringify({
                     destinationID,
-                    // razorpayPaymentID: res.razorpay_payment_id,
-                    // razorpayOrderID: orderID,
-                    // razorpaySignature: res.razorpay_signature
+                    razorpayPaymentID: res.razorpay_payment_id,
+                    razorpayOrderID: res.razorpay_order_id,
+                    razorpaySignature: res.razorpay_signature
                 })
             });
 
-            // const result = await verifyPayment.json();
+            const result = await verifyPayment.json();
 
-            // if(result.success) {
-            //     alert('Tour booked successfully');
-            // } else {
-            //     alert('Payment verification failed');
-            //     console.log(result);
-            // }
+            if(result.success) {
+                alert('Tour booked successfully');
+                window.location.href = '/';
+            } else {
+                alert('Payment verification failed');
+                console.log(result);
+            }
         },
         prefill: {
             name: `${user.fullName.firstName} ${user.fullName.lastName}`,

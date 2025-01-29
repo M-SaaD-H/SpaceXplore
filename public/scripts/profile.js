@@ -1,4 +1,4 @@
-const name = document.querySelector('#name');
+const profileName = document.querySelector('#name');
 const tourCount = document.querySelector('#tour-count');
 const toursContainer = document.querySelector('.tours');
 
@@ -13,7 +13,7 @@ fetch('/api/user/current-user', {
     const user = data.data;
     console.log(user)
 
-    name.innerText = `${user.fullName.firstName} ${user.fullName.lastName}`;
+    profileName.innerText = `${user.fullName.firstName} ${user.fullName.lastName}`;
     tourCount.innerText = user.tours.length;
 
     user.tours.forEach(t => {
@@ -34,34 +34,33 @@ fetch('/api/user/current-user', {
         tour.classList.add('tour');
         tour.setAttribute('id', t._id);
 
+        const cancelButton = tour.querySelector('.cancel-btn');
+        cancelButton.addEventListener('click', function() {
+            cancelTour(t._id);
+        });
+
         toursContainer.appendChild(tour);
     });
 });
 
 // Cancel Tour funtionality
 
-const cancelBtns = document.querySelector('.container .tours-container .tours');
-console.log(cancelBtns);
+function cancelTour(tourID) {
+    fetch(`/api/tours/cancel-tour`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ tourID })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.statusCode !== 200) {
+            alert(data.message);
+            return;
+        }
 
-cancelBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        console.log('clicked');
-        const tour = btn.parentElement;
-        const tourID =tour.getAttribute(id);
-
-        fetch(`/api/tours/cancel-tour`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ tourID })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.status === "success") {
-                alert('tour cancelled successfully');
-                location.reload();
-            }
-        });
+        alert('tour cancelled successfully');
+        location.reload();
     });
-})
+}

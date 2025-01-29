@@ -178,9 +178,9 @@ const cancelTour = asyncHandler( async (req, res) => {
 
     await tour.deleteOne();
 
-    if(await Tour.findById(tourID)) {
-        throw new ApiError(500, "Error while deleting the tour");
-    }
+    // if(await Tour.findById(tourID)) {
+    //     throw new ApiError(500, "Error while deleting the tour");
+    // }
 
     sendBookingCancellationEmail(user.fullName.firstName, await tour.populate("destination"), user.email);
 

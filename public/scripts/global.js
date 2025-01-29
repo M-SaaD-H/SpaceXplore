@@ -53,7 +53,7 @@ document.getElementById('logout-btn').addEventListener('click', () => {
         return res.json();
     })
     .then(data => {
-        location.reload();
+        window.location.href = '/';
         alert(data.message);
     })
 })
